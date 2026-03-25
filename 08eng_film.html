@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Art of Film — Year 8 English</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F8F6F2;--sidebar:#F0EDE8;--panel:#ECE8E2;--card:#E6E2DC;
+  --tab-active:#DDD9D2;--border:#BAB5AE;--accent:#4A4540;--accent-lt:#6B6560;
+  --text:#1C1A18;--muted:#7A746E;--sepia:#928C86;
+  --pre-c:#2A5A8C;--pre-bg:rgba(42,90,140,.07);--pre-bd:#4A7AB0;
+  --pri-c:#5A4A3A;--pri-bg:rgba(90,74,58,.07);--pri-bd:#8A7060;
+  --post-c:#4A3A7A;--post-bg:rgba(74,58,122,.07);--post-bd:#6A5A9A;
+}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;overflow-x:hidden}
+#sb{width:220px;min-width:220px;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100}
+#sb-head{padding:28px 20px 22px;border-bottom:1px solid var(--border)}
+#sb-head h1{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent);line-height:1.3;letter-spacing:.03em}
+#sb-head p{font-size:.7rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:5px}
+#sb nav{padding:14px 0;flex:1}
+.ni{display:flex;align-items:center;gap:12px;padding:13px 20px;cursor:pointer;color:var(--muted);font-size:.84rem;letter-spacing:.04em;border-left:3px solid transparent;transition:all .18s}
+.ni:hover{color:var(--text);background:rgba(123,79,46,.07)}
+.ni.on{color:var(--accent);border-left-color:var(--accent);background:rgba(123,79,46,.1)}
+#sb-foot{padding:14px 20px;border-top:1px solid var(--border);font-size:.68rem;color:var(--muted);letter-spacing:.05em}
+#main{margin-left:220px;flex:1;min-height:100vh}
+.sec{display:none}.sec.on{display:block}
+.sec-head{padding:32px 56px 0}
+.filmstrip{height:26px;background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:22px;position:relative;overflow:hidden}
+.filmstrip::before,.filmstrip::after{content:'';position:absolute;left:0;right:0;height:8px;background-image:repeating-linear-gradient(90deg,var(--bg) 0,var(--bg) 10px,transparent 10px,transparent 20px);background-size:20px 100%}
+.filmstrip::before{top:4px}.filmstrip::after{bottom:4px}
+.sec-head h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--text)}
+.sec-head .sub{color:var(--muted);font-size:.84rem;margin-top:5px;font-style:italic}
+.tabs{padding:24px 56px 48px}
+.tab-nav{display:flex;border-bottom:1px solid var(--border);margin-bottom:28px;overflow-x:auto;gap:0}
+.tb{padding:10px 22px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all .18s;white-space:nowrap;margin-bottom:-1px}
+.tb:hover{color:var(--sepia)}.tb.on{color:var(--accent);border-bottom-color:var(--accent)}
+.tp{display:none}.tp.on{display:block}
+.vid-block{margin-bottom:28px}
+.vid-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sepia);margin-bottom:10px;display:block}
+.vid-wrap{position:relative;padding-bottom:56.25%;height:0;border-radius:4px;overflow:hidden;border:1px solid var(--border);max-width:640px}
+.vid-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.vid-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;background:var(--card);color:var(--muted);font-size:.84rem;text-align:center;padding:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px 26px;margin-bottom:20px}
+.card h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--accent);margin-bottom:12px}
+.card p{font-size:.87rem;line-height:1.72}.card p+p{margin-top:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin-top:4px}
+.col-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sepia);margin-bottom:0}
+.mc{background:var(--tab-active);border:1px solid var(--border);border-radius:3px;padding:13px 15px;height:100%}
+.mc .lbl{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+.mc h4{font-family:'Playfair Display',serif;font-size:.94rem;color:var(--text);margin-bottom:3px}
+.mc p{font-size:.77rem;color:var(--muted);line-height:1.5}
+.quiz{margin-top:28px}
+.quiz h3{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--sepia);margin-bottom:16px}
+.qq{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:16px 20px;margin-bottom:12px}
+.qq p{font-size:.86rem;margin-bottom:12px}
+.opts label{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted);padding:6px 8px;border-radius:3px;cursor:pointer;transition:background .15s}
+.opts label:hover{background:rgba(123,79,46,.07);color:var(--text)}
+.opts input{accent-color:var(--accent)}
+.btn{padding:9px 26px;background:var(--accent);color:#F5EEE4;border:none;border-radius:3px;font-family:'Lato',sans-serif;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .18s;margin-top:16px}
+.btn:hover{background:var(--accent-lt)}
+.fb{margin-top:14px;font-size:.82rem;padding:10px 14px;border-radius:3px;display:none}
+.fb.ok{background:rgba(74,124,89,.12);color:#2A6B40;border:1px solid #4A7C59;display:block}
+.fb.no{background:rgba(160,60,60,.1);color:#8B2020;border:1px solid #B05050;display:block}
+
+/* ── GLOSSARY FILTERS ── */
+.filter-section{margin-bottom:18px}
+.filter-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sepia);margin-bottom:8px;display:block}
+.filter-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px}
+.gfbtn{padding:5px 14px;background:var(--panel);border:1px solid var(--border);border-radius:20px;color:var(--muted);font-family:'Lato',sans-serif;font-size:.74rem;letter-spacing:.05em;cursor:pointer;transition:all .18s}
+.gfbtn:hover,.gfbtn.on{background:rgba(123,79,46,.12);color:var(--accent);border-color:var(--accent)}
+.gfbtn.phase-btn:hover,.gfbtn.phase-btn.on{background:rgba(92,58,139,.1);color:var(--post-c);border-color:var(--post-bd)}
+#subcat-row{display:none;flex-wrap:wrap;gap:7px;margin-bottom:6px;margin-top:2px;padding-left:14px}
+.gsearch{width:100%;padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:'Lato',sans-serif;font-size:.86rem;margin-bottom:18px;outline:none}
+.gsearch:focus{border-color:var(--accent)}.gsearch::placeholder{color:var(--muted)}
+.gcount{font-size:.74rem;color:var(--muted);margin-bottom:16px;font-style:italic}
+
+/* ── GLOSSARY GROUPED DISPLAY ── */
+#ggrid{}
+.gcat-header{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.gcat-header:first-child{margin-top:0}
+.ggroup-label{font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sepia);margin-bottom:8px;padding-bottom:5px;border-bottom:1px dashed var(--border)}
+.ggrid-inner{display:flex;flex-direction:column;gap:12px}
+.ge-row{display:flex;gap:16px;align-items:stretch}
+.ge{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ge-img-slot{flex:1;border:1px dashed var(--border);border-radius:2px;background:var(--panel);position:relative;overflow:hidden;cursor:pointer;transition:border-color .18s}
+.ge-img-slot:hover{border-color:var(--accent)}
+.ge-img-slot::before{content:'';display:block;padding-top:56.25%}
+.ge-img-slot-inner{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted)}
+.ge-img-slot-inner span{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.ge-img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.ge-img-slot img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block}
+.ge-img-slot .img-label{position:absolute;bottom:0;left:0;right:0;background:rgba(28,26,24,.55);color:#F8F6F2;font-size:.64rem;font-family:'Montserrat',sans-serif;padding:5px 10px;letter-spacing:.06em}
+.ggroup-gap{height:20px}
+
+/* ── GLOSSARY CARDS ── */
+.ge{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.ge-badges{display:flex;flex-wrap:wrap;gap:4px}
+.badge{font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:10px;border:1px solid;white-space:nowrap}
+.badge-cat{color:var(--accent);border-color:var(--border);background:rgba(123,79,46,.1)}
+.badge-sub{color:var(--sepia);border-color:#B09070;background:rgba(139,100,69,.1)}
+.badge-pre{color:var(--pre-c);border-color:var(--pre-bd);background:var(--pre-bg)}
+.badge-principal{color:var(--pri-c);border-color:var(--pri-bd);background:var(--pri-bg)}
+.badge-post{color:var(--post-c);border-color:var(--post-bd);background:var(--post-bg)}
+.gt{font-family:'Playfair Display',serif;font-size:1rem;color:var(--accent)}
+.gd{font-size:.81rem;color:var(--text);line-height:1.6;flex:1}
+.gex{font-size:.76rem;color:var(--muted);font-style:italic;border-top:1px solid var(--border);padding-top:7px;line-height:1.5}
+
+/* ── TYPOGRAPHY SYSTEM ── */
+/* Playfair Display: all display titles only */
+.sec-head h2,
+.card h3,
+.mc h4,
+.ge .gt,
+.gcat-header,
+.quiz h3,
+.lp-title,
+.landing-title,
+#gloss-img-title,
+.ph h3{
+  font-family:'Playfair Display',serif;
+}
+/* Montserrat: everything else — body, labels, UI, badges, nav */
+body,
+.card p,
+.mc p,.mc .lbl,
+.ge .gd,.ge .gex,
+.ge-badges,.badge,
+.ggroup-label,.filter-label,.col-label,.vid-label,
+.gsearch,
+.gfbtn,
+.gcount,
+.btn,
+.tb,
+.ni,
+.qq p,.opts label,
+.fb,
+.drag-item,.drop-z,
+.lp-desc,.lp-cta,
+.landing-eyebrow,.landing-tagline,.landing-prompt,
+#gloss-img-cap,
+.ge-img-slot-inner span,
+.ph p,
+.sub,
+.vid-label,
+#sb-foot{
+  font-family:'Montserrat',sans-serif;
+}
+/* Weight assignments */
+.filter-label,.col-label,.vid-label,.ggroup-label,.mc .lbl,
+.landing-eyebrow,.landing-prompt,.ge-img-slot-inner span{font-weight:600}
+.card h3,.mc h4,.ge .gt,.sec-head h2,.quiz h3,.landing-title{font-weight:700}
+.card p,.ge .gd,.lp-desc,.landing-tagline,.qq p,.mc p{font-weight:400}
+.gex,.ge-img-slot-inner span,.ph p,.sub{font-weight:300}
+.btn,.lp-cta,.gfbtn,.tb.on{font-weight:700}
+.tb{font-weight:500}
+.ni{font-weight:500}
+.badge{font-weight:600}
+/* Size assignments */
+.mc .lbl{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase}
+.col-label,.filter-label,.vid-label,.ggroup-label,.landing-eyebrow,.landing-prompt,.ge-img-slot-inner span{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase}
+.badge{font-size:.6rem;letter-spacing:.07em;text-transform:uppercase}
+.ge .gd,.mc p,.card p,.lp-desc,.landing-tagline{font-size:.84rem;line-height:1.7}
+.ge .gex{font-size:.76rem;line-height:1.55}
+.gcount,.ph p,.sub{font-size:.8rem}
+.btn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.tb{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase}
+.gfbtn{font-size:.72rem;letter-spacing:.06em}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.match-col h4{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sepia);margin-bottom:12px}
+.drag-item{background:var(--card);border:1px solid var(--border);border-radius:3px;padding:10px 14px;font-size:.83rem;color:var(--text);margin-bottom:8px;cursor:grab;transition:all .2s;user-select:none}
+.drag-item:active{cursor:grabbing}.drag-item.dragging{opacity:.45;border-color:var(--accent)}
+.drop-z{background:var(--panel);border:1px dashed var(--border);border-radius:3px;padding:10px 14px;font-size:.82rem;color:var(--muted);margin-bottom:8px;min-height:42px;transition:all .2s}
+.drop-z.over{border-color:var(--accent);background:rgba(123,79,46,.06)}
+.drop-z.placed{border-style:solid;border-color:#4A7C59;background:rgba(74,124,89,.08);color:var(--text)}
+.ph{background:var(--card);border:1px dashed var(--border);border-radius:4px;padding:52px 32px;text-align:center;color:var(--muted)}
+.ph .ic{font-size:2.4rem;margin-bottom:16px;opacity:.45}
+.ph h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--sepia);margin-bottom:8px}
+.ph p{font-size:.84rem;line-height:1.65}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+
+<aside id="sb">
+  <div id="sb-head"><h1>The Art<br>of Film</h1><p>Year 8 English</p></div>
+  <nav>
+    <div class="ni on" onclick="showSec('home',this)">🏠&nbsp; Home</div>
+    <div class="ni" onclick="showSec('history',this)">🎞&nbsp; Film History</div>
+    <div class="ni" onclick="showSec('terms',this)">📖&nbsp; Film Terms</div>
+    <div class="ni" onclick="showSec('analysis',this)">🔍&nbsp; Critical Analysis</div>
+  </nav>
+  <div id="sb-foot">St Aidan's Anglican Girls' School</div>
+</aside>
+
+<main id="main">
+
+<!-- LANDING -->
+<section id="sec-home" class="sec on">
+  <div class="landing-wrap">
+  
+    <div class="landing-cards" style="padding-top:48px">
+      <div style="display:flex;flex-direction:column;gap:20px;width:100%;padding:0 8px;box-sizing:border-box">
+
+        <!-- Title card -->
+        <div style="background:#E6E2DC;border:1px solid #BAB5AE;border-radius:8px;padding:32px 36px;box-sizing:border-box">
+          <div style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#928C86;margin-bottom:12px;line-height:1.5">Year 8 English &nbsp;·&nbsp; St Aidan's Anglican Girls' School</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:#1C1A18;line-height:1.3;margin-bottom:12px">The Art of <em style="font-style:italic;color:#4A4540">Film</em></div>
+          <div style="font-size:.88rem;color:#7A746E;line-height:1.7;max-width:560px">An interactive guide to film history, the language of cinema, and how to analyse film with confidence.</div>
+        </div>
+
+        <!-- Section cards row -->
+        <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#928C86;padding-left:4px;line-height:1.5">Choose a section to begin</div>
+        <div style="display:flex;flex-direction:row;gap:20px;width:100%;padding:0 8px;box-sizing:border-box">
+
+        <!-- Card 1 -->
+        <div onclick="showSec('history',document.querySelectorAll('.ni')[1])" style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:8px;padding:32px 24px 28px;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s"
+          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 36px rgba(0,0,0,.11)';this.style.borderColor='#4A4540'"
+          onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#BAB5AE'">
+          <div style="width:100%;display:flex;justify-content:center;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #BAB5AE;color:#4A4540">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="25" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <circle cx="28" cy="28" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+              <circle cx="28" cy="28" r="2.5" fill="currentColor"/>
+              <circle cx="28" cy="6"  r="2.8" fill="currentColor" opacity=".35"/>
+              <circle cx="46.2" cy="17" r="2.8" fill="currentColor" opacity=".35"/>
+              <circle cx="46.2" cy="39" r="2.8" fill="currentColor" opacity=".35"/>
+              <circle cx="28" cy="50" r="2.8" fill="currentColor" opacity=".35"/>
+              <circle cx="9.8"  cy="39" r="2.8" fill="currentColor" opacity=".35"/>
+              <circle cx="9.8"  cy="17" r="2.8" fill="currentColor" opacity=".35"/>
+              <line x1="28" y1="21" x2="28" y2="13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="28" y1="35" x2="28" y2="43" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="34.8" y1="24.5" x2="40.3" y2="21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="21.2" y1="31.5" x2="15.7" y2="35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="34.8" y1="31.5" x2="40.3" y2="35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="21.2" y1="24.5" x2="15.7" y2="21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#1C1A18;margin-bottom:10px">Film History</div>
+          <div style="font-size:.79rem;color:#7A746E;line-height:1.68;flex:1">From the silent era and Hollywood's Golden Age to the New Wave and contemporary cinema — explore the movements, films, and directors that shaped the art form.</div>
+          <div style="margin-top:18px;font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:#4A4540;font-weight:700">Explore →</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div onclick="showSec('terms',document.querySelectorAll('.ni')[2])" style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:8px;padding:32px 24px 28px;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s"
+          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 36px rgba(0,0,0,.11)';this.style.borderColor='#4A4540'"
+          onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#BAB5AE'">
+          <div style="width:100%;display:flex;justify-content:center;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #BAB5AE;color:#4A4540">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 56 56" fill="none">
+              <rect x="7" y="18" width="42" height="30" rx="3" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <rect x="7" y="11" width="42" height="9" rx="2.5" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <line x1="16" y1="11" x2="13" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="24" y1="11" x2="21" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="11" x2="29" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="40" y1="11" x2="37" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="31" x2="42" y2="31" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".5"/>
+              <line x1="14" y1="37" x2="36" y2="37" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".5"/>
+              <line x1="14" y1="43" x2="30" y2="43" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".5"/>
+            </svg>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#1C1A18;margin-bottom:10px">Film Terms</div>
+          <div style="font-size:.79rem;color:#7A746E;line-height:1.68;flex:1">Master the language of cinema. Browse and search terms across cinematography, sound, editing, narrative, and the key roles in a film crew.</div>
+          <div style="margin-top:18px;font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:#4A4540;font-weight:700">Explore →</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div onclick="showSec('analysis',document.querySelectorAll('.ni')[3])" style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:8px;padding:32px 24px 28px;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s"
+          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 36px rgba(0,0,0,.11)';this.style.borderColor='#4A4540'"
+          onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#BAB5AE'">
+          <div style="width:100%;display:flex;justify-content:center;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #BAB5AE;color:#4A4540">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 56 56" fill="none">
+              <rect x="6" y="8" width="36" height="36" rx="3" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <rect x="10" y="11" width="5" height="4" rx="1" fill="currentColor" opacity=".35"/>
+              <rect x="19" y="11" width="5" height="4" rx="1" fill="currentColor" opacity=".35"/>
+              <rect x="28" y="11" width="5" height="4" rx="1" fill="currentColor" opacity=".35"/>
+              <rect x="10" y="37" width="5" height="4" rx="1" fill="currentColor" opacity=".35"/>
+              <rect x="19" y="37" width="5" height="4" rx="1" fill="currentColor" opacity=".35"/>
+              <rect x="28" y="37" width="5" height="4" rx="1" fill="currentColor" opacity=".35"/>
+              <rect x="12" y="18" width="24" height="16" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none" opacity=".5"/>
+              <circle cx="40" cy="40" r="10" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <line x1="47.5" y1="47.5" x2="53" y2="53" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+              <line x1="40" y1="34" x2="40" y2="46" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".4"/>
+              <line x1="34" y1="40" x2="46" y2="40" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".4"/>
+            </svg>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#1C1A18;margin-bottom:10px">Critical Analysis</div>
+          <div style="font-size:.79rem;color:#7A746E;line-height:1.68;flex:1">Learn how to read, interpret, and write about film with precision. Frameworks and guided tasks for analysing visual storytelling.</div>
+          <div style="margin-top:18px;font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:#4A4540;font-weight:700">Coming soon →</div>
+        </div>
+
+      </div><!-- end section cards row -->
+      </div><!-- end column -->
+    </div><!-- end landing-cards -->
+  </div>
+</section>
+
+<!-- FILM HISTORY -->
+<section id="sec-history" class="sec">
+  <div class="sec-head"><div class="filmstrip"></div><h2>Film History</h2><p class="sub">From the first flicker of light to the digital age</p></div>
+  <div class="tabs">
+
+          <div class="vid-block" style="padding:0 8px">
+      <span class="vid-label">Featured Resource — A History of Cinema</span>
+      <a href="https://www.youtube.com/watch?v=WOTV96rp5rY" target="_blank" style="display:block;position:relative;max-width:640px;border:1px solid var(--border);border-radius:2px;overflow:hidden;cursor:pointer;text-decoration:none">
+        <img src="https://img.youtube.com/vi/WOTV96rp5rY/maxresdefault.jpg" alt="A History of Cinema" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25);transition:background .2s" onmouseover="this.style.background='rgba(0,0,0,.4)'" onmouseout="this.style.background='rgba(0,0,0,.25)'">
+          <div style="width:64px;height:64px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3)">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#1C1A18"><polygon points="8,5 19,12 8,19"/></svg>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em">Click to watch on YouTube</div>
+      </a>
+    </div>
+      <button class="tb on" onclick="showTab('history','silent',this)">Silent Era</button>
+      <button class="tb" onclick="showTab('history','golden',this)">Hollywood Golden Age</button>
+      <button class="tb" onclick="showTab('history','newwave',this)">New Wave</button>
+      <button class="tb" onclick="showTab('history','modern',this)">Modern &amp; Contemporary</button>
+    </div>
+    <div class="tp on" id="history-silent" style="padding:0 56px">
+      <div class="card">
+        <h3>The Silent Era — c. 1890s to 1920s</h3>
+        <p>Cinema was born in the 1890s. On 28 December 1895, Auguste and Louis Lumière held the first public film screening at the Grand Café in Paris, projecting short documentary films of everyday life — workers leaving a factory, a train arriving at a station. Within months, filmmakers across the world were experimenting with the new medium, drawn by its capacity to capture and replay movement.</p>
+        <p>Early cinema evolved rapidly from simple recordings of movement into complex narrative art. Georges Méliès pioneered special effects and fantasy storytelling; D.W. Griffith developed the grammar of film editing, including the close-up and cross-cutting; and Sergei Eisenstein theorised montage as a political and emotional tool. By the 1920s, filmmakers had established many of the visual conventions still in use today — though all without synchronised sound, which would not arrive until The Jazz Singer in 1927.</p>
+      </div>
+      <div class="g2">
+        <p class="col-label">Key Films</p><p class="col-label">Key Figures</p>
+        <div class="mc"><div class="lbl">1902</div><h4>A Trip to the Moon</h4><p>Directed by Georges Méliès. A 14-minute fantasy film using hand-painted frames, stop-tricks, and theatrical staging. Widely considered the first science fiction film.</p></div>
+        <div class="mc"><div class="lbl">1861–1938</div><h4>Georges Méliès</h4><p>French filmmaker and stage magician who discovered the stop-trick accidentally and went on to make over 500 films. His purpose-built studio at Montreuil was among the first in the world.</p></div>
+        <div class="mc"><div class="lbl">1920</div><h4>The Cabinet of Dr. Caligari</h4><p>Directed by Robert Wiene. A German Expressionist masterpiece whose distorted, angular painted sets expressed psychological horror visually. Enormously influential on horror and film noir.</p></div>
+        <div class="mc"><div class="lbl">1889–1977</div><h4>Charlie Chaplin</h4><p>British-born actor, director, and composer who became one of cinema's first global stars through his "Tramp" character. Co-founded United Artists in 1919 to protect creative independence.</p></div>
+        <div class="mc"><div class="lbl">1925</div><h4>The Gold Rush</h4><p>Directed by and starring Charlie Chaplin. The Tramp seeks fortune in the Klondike. Contains iconic sequences including the eating of a boot and the Oceana Roll dance performed with bread rolls.</p></div>
+        <div class="mc"><div class="lbl">1862–1954 / 1864–1948</div><h4>The Lumière Brothers</h4><p>Auguste and Louis Lumière invented the Cinématographe — a combined camera, printer, and projector. Their 1895 Paris screening is widely regarded as the birth of cinema as a public art form.</p></div>
+      </div>
+      <div class="quiz"><h3>✦ Quick Check — Silent Era</h3>
+        <div class="qq"><p>1. In what year did the Lumière Brothers hold their first public film screening?</p><div class="opts">
+          <label><input type="radio" name="qs1" value="a"> 1888</label>
+          <label><input type="radio" name="qs1" value="b"> 1895</label>
+          <label><input type="radio" name="qs1" value="c"> 1901</label>
+          <label><input type="radio" name="qs1" value="d"> 1910</label>
+        </div></div>
+        <div class="qq"><p>2. Which filmmaker is credited with pioneering special effects techniques such as the stop-trick and multiple exposures?</p><div class="opts">
+          <label><input type="radio" name="qs2" value="a"> Charlie Chaplin</label>
+          <label><input type="radio" name="qs2" value="b"> D.W. Griffith</label>
+          <label><input type="radio" name="qs2" value="c"> Georges Méliès</label>
+          <label><input type="radio" name="qs2" value="d"> Buster Keaton</label>
+        </div></div>
+        <div class="qq"><p>3. What was historically significant about The Jazz Singer (1927)?</p><div class="opts">
+          <label><input type="radio" name="qs3" value="a"> It was the first film to be shot in colour</label>
+          <label><input type="radio" name="qs3" value="b"> It was the first feature film to use synchronised dialogue and song</label>
+          <label><input type="radio" name="qs3" value="c"> It introduced the close-up to cinema</label>
+          <label><input type="radio" name="qs3" value="d"> It was the first film produced in Hollywood</label>
+        </div></div>
+        <button class="btn" onclick="checkQuiz('silent',['b','c','b'],['qs1','qs2','qs3'],'fb-silent')">Check Answers</button>
+        <div class="fb" id="fb-silent"></div>
+      </div>
+    </div>
+
+    <div class="tp" id="history-golden" style="padding:0 56px">
+      <div class="card">
+        <h3>The Hollywood Golden Age — c. 1930s to 1960s</h3>
+        <p>By the 1930s, Hollywood had developed the studio system — a model in which major studios including MGM, Warner Bros., Paramount, RKO, and 20th Century Fox controlled production, distribution, and exhibition. Studios signed actors, directors, and writers to long-term contracts, creating an efficient and prolific factory for popular entertainment. At its peak, Hollywood was producing over 500 films per year.</p>
+        <p>The Golden Age produced many of cinema's most enduring works. The arrival of synchronised sound in the late 1920s had transformed the industry, and by the late 1930s Technicolor was enabling lavish productions such as Gone with the Wind and The Wizard of Oz (both 1939). Established genres — the western, the musical, the screwball comedy, and film noir — defined the era. Content was governed by the Production Code (the Hays Code), which enforced strict moral guidelines on subject matter from 1934 until its collapse in the late 1960s.</p>
+      </div>
+      <div class="g2">
+        <p class="col-label">Key Films</p><p class="col-label">Key Figures</p>
+        <div class="mc"><div class="lbl">1941</div><h4>Citizen Kane</h4><p>Directed by Orson Welles (aged 25 during production). Its innovative use of deep focus photography, non-linear narrative, and unconventional low-angle shots redefined cinematic technique. Consistently ranked among the greatest films ever made.</p></div>
+        <div class="mc"><div class="lbl">1915–1985</div><h4>Orson Welles</h4><p>Actor, director, and producer who made Citizen Kane at 25. His career was marked by battles with studios over creative control, but his influence on visual storytelling — particularly his use of deep focus and long takes — is immeasurable.</p></div>
+        <div class="mc"><div class="lbl">1942</div><h4>Casablanca</h4><p>Directed by Michael Curtiz. Set during World War II, the film won three Academy Awards including Best Picture. Celebrated for its screenplay, performances by Humphrey Bogart and Ingrid Bergman, and its atmospheric cinematography.</p></div>
+        <div class="mc"><div class="lbl">1899–1980</div><h4>Alfred Hitchcock</h4><p>British-born director known as "the Master of Suspense." Made 53 feature films including Vertigo (1958), Psycho (1960), and North by Northwest (1959). Pioneered the use of the subjective camera and psychological tension.</p></div>
+        <div class="mc"><div class="lbl">1954</div><h4>Rear Window</h4><p>Directed by Alfred Hitchcock. A photographer confined to a wheelchair believes he has witnessed a murder through his apartment window. A masterwork of suspense and a meditation on the voyeuristic nature of cinema itself.</p></div>
+        <div class="mc"><div class="lbl">1906–2002</div><h4>Billy Wilder</h4><p>Austrian-born director and screenwriter. His films — including Double Indemnity (1944), Sunset Boulevard (1950), and Some Like It Hot (1959) — are celebrated for their sharp dialogue, dark wit, and moral complexity.</p></div>
+      </div>
+      <div class="quiz"><h3>✦ Quick Check — Hollywood Golden Age</h3>
+        <div class="qq"><p>1. What was the "studio system" in Hollywood's Golden Age?</p><div class="opts">
+          <label><input type="radio" name="qg1" value="a"> A government body that rated and censored films</label>
+          <label><input type="radio" name="qg1" value="b"> A model where major studios controlled production, distribution, and exhibition</label>
+          <label><input type="radio" name="qg1" value="c"> A technical method for recording synchronised sound</label>
+          <label><input type="radio" name="qg1" value="d"> A union representing Hollywood actors and directors</label>
+        </div></div>
+        <div class="qq"><p>2. Citizen Kane is notable for its pioneering use of which technique?</p><div class="opts">
+          <label><input type="radio" name="qg2" value="a"> Colour cinematography</label>
+          <label><input type="radio" name="qg2" value="b"> Computer-generated imagery</label>
+          <label><input type="radio" name="qg2" value="c"> Deep focus photography and non-linear narrative</label>
+          <label><input type="radio" name="qg2" value="d"> Dolby stereo sound</label>
+        </div></div>
+        <div class="qq"><p>3. The Hays Code (Production Code) was a set of guidelines that governed which aspect of Hollywood filmmaking?</p><div class="opts">
+          <label><input type="radio" name="qg3" value="a"> Camera and lighting techniques</label>
+          <label><input type="radio" name="qg3" value="b"> The content and morality of films</label>
+          <label><input type="radio" name="qg3" value="c"> Actor contracts and wages</label>
+          <label><input type="radio" name="qg3" value="d"> International distribution rights</label>
+        </div></div>
+        <button class="btn" onclick="checkQuiz('golden',['b','c','b'],['qg1','qg2','qg3'],'fb-golden')">Check Answers</button>
+        <div class="fb" id="fb-golden"></div>
+      </div>
+    </div>
+
+    <div class="tp" id="history-newwave" style="padding:0 56px">
+      <div class="card">
+        <h3>New Wave &amp; International Cinema — c. 1950s to 1970s</h3>
+        <p>The New Wave refers to a series of film movements in the late 1950s and 1960s that rejected classical Hollywood conventions in favour of location shooting, improvisation, handheld cameras, and personal filmmaking. The French Nouvelle Vague was led by critics-turned-directors — Jean-Luc Godard, François Truffaut, Claude Chabrol, Éric Rohmer — who had written for the journal Cahiers du Cinéma. They championed the auteur theory: the idea that the director is the primary author of a film, stamping it with a personal vision as a writer stamps a novel.</p>
+        <p>Beyond France, this era saw the global rise of important national cinemas. Japanese cinema gave the world Akira Kurosawa and Yasujirō Ozu; Italian cinema produced Federico Fellini and Michelangelo Antonioni; Swedish cinema produced Ingmar Bergman. Meanwhile in America, "New Hollywood" directors including Francis Ford Coppola, Martin Scorsese, and Robert Altman brought European art cinema sensibilities into mainstream studio filmmaking, producing some of the most complex and challenging American films ever made.</p>
+      </div>
+      <div class="g2">
+        <p class="col-label">Key Films</p><p class="col-label">Key Figures</p>
+        <div class="mc"><div class="lbl">1960</div><h4>Breathless (À bout de souffle)</h4><p>Jean-Luc Godard's debut feature. Shot on location in Paris with a handheld camera, it deliberately used jump cuts to break Hollywood's smooth continuity editing. A foundational text of the Nouvelle Vague.</p></div>
+        <div class="mc"><div class="lbl">1930–2022</div><h4>Jean-Luc Godard</h4><p>Swiss-French filmmaker and one of the most influential directors of the 20th century. His radical approach to editing, narrative structure, and cinema's relationship with politics transformed filmmaking worldwide.</p></div>
+        <div class="mc"><div class="lbl">1963</div><h4>8½</h4><p>Federico Fellini's self-reflexive masterpiece about a film director in creative crisis. It blends memory, fantasy, and reality in a way that was entirely new, and has influenced filmmakers from Woody Allen to Paolo Sorrentino.</p></div>
+        <div class="mc"><div class="lbl">1920–1993</div><h4>Federico Fellini</h4><p>Italian director whose films are characterised by dreamlike imagery, autobiographical content, and a carnivalesque visual style. Won four Academy Awards for Best Foreign Language Film — a record at the time.</p></div>
+        <div class="mc"><div class="lbl">1954</div><h4>Seven Samurai</h4><p>Akira Kurosawa's epic about a group of samurai hired to protect a village. Its three-and-a-half-hour narrative structure and dynamic action sequences directly inspired The Magnificent Seven (1960) and countless action films since.</p></div>
+        <div class="mc"><div class="lbl">1910–1998</div><h4>Akira Kurosawa</h4><p>Japanese director who made 30 films over five decades, bridging Eastern and Western storytelling traditions. George Lucas, Francis Ford Coppola, and Steven Spielberg have all cited him as a defining influence on their work.</p></div>
+      </div>
+      <div class="quiz"><h3>✦ Quick Check — New Wave</h3>
+        <div class="qq"><p>1. The French term "Nouvelle Vague" translates as which of the following?</p><div class="opts">
+          <label><input type="radio" name="qnw1" value="a"> New Vision</label>
+          <label><input type="radio" name="qnw1" value="b"> New Wave</label>
+          <label><input type="radio" name="qnw1" value="c"> New Cinema</label>
+          <label><input type="radio" name="qnw1" value="d"> New Direction</label>
+        </div></div>
+        <div class="qq"><p>2. The auteur theory argues that in filmmaking, who functions as the primary creative author of a film?</p><div class="opts">
+          <label><input type="radio" name="qnw2" value="a"> The screenwriter</label>
+          <label><input type="radio" name="qnw2" value="b"> The producer</label>
+          <label><input type="radio" name="qnw2" value="c"> The director</label>
+          <label><input type="radio" name="qnw2" value="d"> The lead actor</label>
+        </div></div>
+        <div class="qq"><p>3. Godard's Breathless (1960) is particularly noted for its deliberate use of which editing technique?</p><div class="opts">
+          <label><input type="radio" name="qnw3" value="a"> Cross-cutting</label>
+          <label><input type="radio" name="qnw3" value="b"> Dissolves</label>
+          <label><input type="radio" name="qnw3" value="c"> Jump cuts</label>
+          <label><input type="radio" name="qnw3" value="d"> Freeze frames</label>
+        </div></div>
+        <button class="btn" onclick="checkQuiz('newwave',['b','c','c'],['qnw1','qnw2','qnw3'],'fb-newwave')">Check Answers</button>
+        <div class="fb" id="fb-newwave"></div>
+      </div>
+    </div>
+
+    <div class="tp" id="history-modern" style="padding:0 56px">
+      <div class="card">
+        <h3>Modern &amp; Contemporary Film — c. 1980s to present</h3>
+        <p>The modern era of Hollywood began with the rise of the blockbuster. Jaws (1975) and Star Wars (1977) demonstrated the commercial power of high-concept films released widely and marketed aggressively — a model that reshaped the industry and continues to dominate it today. At the same time, a generation of directors trained on European and Asian art cinema — Scorsese, Coppola, De Palma — brought formal ambition to mainstream studio filmmaking, producing complex and challenging American films.</p>
+        <p>Digital technology transformed cinema from the 1990s onward. CGI redefined what was possible on screen, with Jurassic Park (1993) and The Matrix (1999) as landmarks. Independent cinema flourished: Quentin Tarantino's Pulp Fiction (1994) and the Coen Brothers' work showed that formally adventurous filmmaking could reach wide audiences. Most recently, the global expansion of the film industry has seen South Korean, Mexican, and other international filmmakers achieve major recognition. Bong Joon-ho's Parasite (2019) became the first non-English-language film to win the Academy Award for Best Picture — a historic marker of cinema's increasingly global reach.</p>
+      </div>
+      <div class="g2">
+        <p class="col-label">Key Films</p><p class="col-label">Key Figures</p>
+        <div class="mc"><div class="lbl">1993</div><h4>Schindler's List</h4><p>Steven Spielberg's account of Oskar Schindler, a German industrialist who saved over 1,000 Jewish people during the Holocaust. Shot in black and white, it won seven Academy Awards including Best Picture and Best Director.</p></div>
+        <div class="mc"><div class="lbl">b. 1946</div><h4>Steven Spielberg</h4><p>American director, producer, and screenwriter whose films have collectively grossed more than those of any other director in history. Key works include Jaws, E.T., Raiders of the Lost Ark, Schindler's List, and Saving Private Ryan.</p></div>
+        <div class="mc"><div class="lbl">2000</div><h4>Memento</h4><p>Christopher Nolan's psychological thriller told in reverse chronological order. Its structure forces the viewer to experience the protagonist's memory loss firsthand, making form and content inseparable.</p></div>
+        <div class="mc"><div class="lbl">b. 1970</div><h4>Christopher Nolan</h4><p>British-American director known for films that challenge linear time and perception. Key works include Memento, The Dark Knight trilogy, Inception, Interstellar, Dunkirk, and Oppenheimer (2023).</p></div>
+        <div class="mc"><div class="lbl">2019</div><h4>Parasite</h4><p>Bong Joon-ho's darkly comic thriller about class inequality in contemporary South Korea. Won four Academy Awards including Best Picture — the first non-English-language film to achieve this.</p></div>
+        <div class="mc"><div class="lbl">b. 1969</div><h4>Bong Joon-ho</h4><p>South Korean director whose films blend genre conventions with sharp social commentary. His international breakthrough came with The Host (2006); Parasite (2019) brought him global recognition and four Academy Awards.</p></div>
+      </div>
+      <div class="quiz"><h3>✦ Quick Check — Modern &amp; Contemporary</h3>
+        <div class="qq"><p>1. Which two films are credited with establishing the "blockbuster" model in Hollywood?</p><div class="opts">
+          <label><input type="radio" name="qm1" value="a"> Star Wars and The Godfather</label>
+          <label><input type="radio" name="qm1" value="b"> Jaws and Star Wars</label>
+          <label><input type="radio" name="qm1" value="c"> E.T. and Indiana Jones</label>
+          <label><input type="radio" name="qm1" value="d"> Jurassic Park and The Matrix</label>
+        </div></div>
+        <div class="qq"><p>2. Parasite (2019) made history at the Academy Awards by becoming the first what?</p><div class="opts">
+          <label><input type="radio" name="qm2" value="a"> Asian film ever nominated for Best Picture</label>
+          <label><input type="radio" name="qm2" value="b"> Non-English-language film to win Best Picture</label>
+          <label><input type="radio" name="qm2" value="c"> Film directed by a woman to win Best Picture</label>
+          <label><input type="radio" name="qm2" value="d"> Film shot digitally to win Best Picture</label>
+        </div></div>
+        <div class="qq"><p>3. Christopher Nolan's Memento (2000) is formally distinctive because of which structural choice?</p><div class="opts">
+          <label><input type="radio" name="qm3" value="a"> It is shot entirely in one unbroken take</label>
+          <label><input type="radio" name="qm3" value="b"> It is told in reverse chronological order</label>
+          <label><input type="radio" name="qm3" value="c"> It has no dialogue</label>
+          <label><input type="radio" name="qm3" value="d"> It uses only natural light throughout</label>
+        </div></div>
+        <button class="btn" onclick="checkQuiz('modern',['b','b','b'],['qm1','qm2','qm3'],'fb-modern')">Check Answers</button>
+        <div class="fb" id="fb-modern"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILM TERMS -->
+<section id="sec-terms" class="sec">
+  <div class="sec-head"><div class="filmstrip"></div><h2>Film Terms</h2><p class="sub">The language of cinema</p></div>
+  <div class="tabs">
+    <div class="tab-nav">
+      <button class="tb on" onclick="showTab('terms','glossary',this)">Glossary</button>
+      <button class="tb" onclick="showTab('terms','matching',this)">Matching Activity</button>
+    </div>
+
+    <div class="tp on" id="terms-glossary">
+      <input class="gsearch" type="text" id="gsearch" placeholder="Search terms, definitions, or examples…" oninput="doSearch(this.value)">
+      <div class="filter-section">
+        <span class="filter-label">Category</span>
+        <div class="filter-row" id="cat-row">
+          <button class="gfbtn on" onclick="setCat('all',this)">All</button>
+          <button class="gfbtn" onclick="setCat('Cinematography',this)">Cinematography</button>
+          <button class="gfbtn" onclick="setCat('Sound',this)">Sound</button>
+          <button class="gfbtn" onclick="setCat('Editing',this)">Editing</button>
+          <button class="gfbtn" onclick="setCat('Narrative',this)">Narrative</button>
+          <button class="gfbtn" onclick="setCat('People',this)">People</button>
+          <button class="gfbtn" onclick="setCat('Production',this)">Production</button>
+        </div>
+        <div id="subcat-row"></div>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">Production Phase</span>
+        <div class="filter-row">
+          <button class="gfbtn phase-btn on" onclick="setPhase('all',this)">All Phases</button>
+          <button class="gfbtn phase-btn" onclick="setPhase('pre',this)">Pre-production</button>
+          <button class="gfbtn phase-btn" onclick="setPhase('principal',this)">Principal Photography</button>
+          <button class="gfbtn phase-btn" onclick="setPhase('post',this)">Post-production</button>
+        </div>
+      </div>
+      <div id="phase-vid-block" style="display:none;margin-bottom:28px">
+        <span class="vid-label" id="phase-vid-label"></span>
+        <div class="vid-wrap" id="phase-vid-wrap"></div>
+      </div>
+      <div class="gcount" id="gcount"></div>
+      <div id="ggrid"></div>
+    </div>
+
+    <div class="tp" id="terms-matching">
+      <div class="card" style="margin-bottom:24px"><h3>Matching Activity</h3><p>Drag each term on the left to its correct definition on the right.</p></div>
+      <div class="match-grid">
+        <div class="match-col"><h4>Terms</h4><div id="drag-col"></div></div>
+        <div class="match-col"><h4>Definitions</h4><div id="drop-col"></div></div>
+      </div>
+      <button class="btn" onclick="checkMatch()">Check Matches</button>
+      <button class="btn" style="background:var(--panel);color:var(--sepia);border:1px solid var(--border);margin-left:10px" onclick="buildMatch()">Reset</button>
+      <div class="fb" id="fb-match"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CRITICAL ANALYSIS -->
+<section id="sec-analysis" class="sec">
+  <div class="sec-head"><div class="filmstrip"></div><h2>Critical Analysis</h2><p class="sub">Reading, interpreting, and writing about texts</p></div>
+  <div class="tabs">
+
+    <!-- ── MAIN LANDING ── -->
+    <div id="ana-home" style="padding-top:8px">
+      <div style="display:flex;flex-direction:row;gap:20px;width:100%;padding:0 8px;box-sizing:border-box">
+
+        <!-- Panel 1: Inside Out 2 -->
+        <div onclick="showAnaSec('ana-io2')" style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:2px;padding:32px 24px 28px;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s"
+          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 36px rgba(0,0,0,.11)';this.style.borderColor='#4A4540'"
+          onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#BAB5AE'">
+          <div style="width:100%;display:flex;justify-content:center;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #BAB5AE;color:#4A4540">
+            <svg width="64" height="64" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="28" r="22" stroke="currentColor" stroke-width="2"/>
+              <path d="M22 20c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V20z" stroke="currentColor" stroke-width="1.6" fill="none"/>
+              <circle cx="28" cy="22" r="2.5" fill="currentColor" opacity=".4"/>
+              <circle cx="28" cy="28" r="2.5" fill="currentColor" opacity=".4"/>
+              <circle cx="28" cy="34" r="2.5" fill="currentColor" opacity=".4"/>
+              <path d="M14 22h4M38 22h4M14 28h4M38 28h4M14 34h4M38 34h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+            </svg>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#1C1A18;margin-bottom:10px">Inside Out 2</div>
+          <div style="font-size:.79rem;color:#7A746E;line-height:1.68;flex:1">Study how <em>Inside Out 2</em> communicates ideas through aesthetic and stylistic devices. Explore the theme of emotional integration in adolescence.</div>
+          <div style="margin-top:18px;font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:#4A4540;font-weight:700">Explore →</div>
+        </div>
+
+        <!-- Panel 2: Analysis in English -->
+        <div onclick="showAnaSec('ana-english')" style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:2px;padding:32px 24px 28px;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s"
+          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 36px rgba(0,0,0,.11)';this.style.borderColor='#4A4540'"
+          onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#BAB5AE'">
+          <div style="width:100%;display:flex;justify-content:center;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #BAB5AE;color:#4A4540">
+            <svg width="64" height="64" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="8" width="30" height="38" rx="2" stroke="currentColor" stroke-width="2"/>
+              <line x1="16" y1="18" x2="34" y2="18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="16" y1="24" x2="34" y2="24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="16" y1="30" x2="28" y2="30" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M36 34l4 4-2 2-4-4v-2h2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#1C1A18;margin-bottom:10px">Analysis in English</div>
+          <div style="font-size:.79rem;color:#7A746E;line-height:1.68;flex:1">Build the foundations of analytical writing — from analysing texts to mastering CAVABs and constructing a supported argument.</div>
+          <div style="margin-top:18px;font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:#4A4540;font-weight:700">Explore →</div>
+        </div>
+
+        <!-- Panel 3: Analysis in Film -->
+        <div onclick="showAnaSec('ana-film')" style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:2px;padding:32px 24px 28px;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s"
+          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 36px rgba(0,0,0,.11)';this.style.borderColor='#4A4540'"
+          onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#BAB5AE'">
+          <div style="width:100%;display:flex;justify-content:center;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #BAB5AE;color:#4A4540">
+            <svg width="64" height="64" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="8" width="32" height="30" rx="2" stroke="currentColor" stroke-width="2"/>
+              <rect x="10" y="11" width="5" height="4" rx="1" fill="currentColor" opacity=".4"/>
+              <rect x="19" y="11" width="5" height="4" rx="1" fill="currentColor" opacity=".4"/>
+              <rect x="28" y="11" width="5" height="4" rx="1" fill="currentColor" opacity=".4"/>
+              <rect x="10" y="31" width="5" height="4" rx="1" fill="currentColor" opacity=".4"/>
+              <rect x="19" y="31" width="5" height="4" rx="1" fill="currentColor" opacity=".4"/>
+              <rect x="28" y="31" width="5" height="4" rx="1" fill="currentColor" opacity=".4"/>
+              <rect x="12" y="18" width="20" height="10" rx="1" stroke="currentColor" stroke-width="1.4" opacity=".5"/>
+              <circle cx="40" cy="40" r="9" stroke="currentColor" stroke-width="2"/>
+              <line x1="46.5" y1="46.5" x2="52" y2="52" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#1C1A18;margin-bottom:10px">Analysis in Film</div>
+          <div style="font-size:.79rem;color:#7A746E;line-height:1.68;flex:1">Apply analytical frameworks to film texts across three guided topics — from perspectives and representations to thesis construction.</div>
+          <div style="margin-top:18px;font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:#4A4540;font-weight:700">Explore →</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── INSIDE OUT 2 ── -->
+    <div id="ana-io2" style="display:none">
+      <div style="margin-bottom:24px"><button onclick="backToAnaHome()" class="svg-btn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,2 4,6 8,10"/></svg>Back</button></div>
+      <div class="card" style="margin-bottom:20px">
+        <h3>Inside Out 2 — Aesthetics and Meaning</h3>
+        <p><em>Inside Out 2</em> (dir. Kelsey Mann, 2024, Pixar/Disney) is our focus film for this unit. We will analyse how the film communicates ideas about emotional integration and adolescence through aesthetic and stylistic devices.</p>
+        <p>Use the <strong>Analysis in Film</strong> section to work through the modelled lessons. Return here for film-specific reference materials as they are added.</p>
+      </div>
+      <div class="ph"><div class="ic">🎬</div><h3>Film Resources Coming Soon</h3><p>Clips, scene breakdowns, and additional reference materials will be added here.</p></div>
+    </div>
+
+    <!-- ── ANALYSIS IN ENGLISH ── -->
+    <div id="ana-english" style="display:none">
+      <div style="margin-bottom:24px"><button onclick="backToAnaHome()" class="car-btn">← Back</button></div>
+      <div style="display:flex;flex-direction:row;gap:20px;width:100%;box-sizing:border-box">
+        <div style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:2px;padding:28px 24px;opacity:.65">
+          <div style="font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#928C86;margin-bottom:10px">Topic 01</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#1C1A18;margin-bottom:8px">Analysing in English</div>
+          <div style="font-size:.79rem;color:#7A746E;line-height:1.65">Resources coming soon.</div>
+        </div>
+        <div style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:2px;padding:28px 24px;opacity:.65">
+          <div style="font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#928C86;margin-bottom:10px">Topic 02</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#1C1A18;margin-bottom:8px">CAVABs</div>
+          <div style="font-size:.79rem;color:#7A746E;line-height:1.65">Resources coming soon.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ANALYSIS IN FILM ── -->
+    <div id="ana-film" style="display:none">
+
+      <!-- Sub-landing -->
+      <div id="ana-film-home">
+        <div style="margin-bottom:24px"><button onclick="backToAnaHome()" class="car-btn">← Back</button></div>
+        <div style="display:flex;flex-direction:row;gap:20px;width:100%;box-sizing:border-box">
+
+          <div style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:2px;padding:28px 24px;opacity:.65">
+            <div style="font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#928C86;margin-bottom:10px">Topic 01</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#1C1A18;margin-bottom:8px">Perspectives &amp; Representations</div>
+            <div style="font-size:.79rem;color:#7A746E;line-height:1.65">Adolescence — resources coming soon.</div>
+          </div>
+
+          <div onclick="showFilmTopic('topic2')" style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:2px;padding:28px 24px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s"
+            onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.1)';this.style.borderColor='#4A4540'"
+            onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#BAB5AE'">
+            <div style="font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#928C86;margin-bottom:10px">Topic 02</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#1C1A18;margin-bottom:8px">Emotional Integration</div>
+            <div style="font-size:.79rem;color:#7A746E;line-height:1.65;margin-bottom:14px">Analysing aesthetic features and stylistic devices in <em>Inside Out 2</em> to construct a supported thesis.</div>
+            <div style="font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:#4A4540;font-weight:700;font-family:'Montserrat',sans-serif">Begin →</div>
+          </div>
+
+          <div style="flex:1;background:#E6E2DC;border:1px solid #BAB5AE;border-radius:2px;padding:28px 24px;opacity:.65">
+            <div style="font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#928C86;margin-bottom:10px">Topic 03</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#1C1A18;margin-bottom:8px">Constructing a Thesis</div>
+            <div style="font-size:.79rem;color:#7A746E;line-height:1.65">Resources coming soon.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TOPIC 2: EMOTIONAL INTEGRATION -->
+      <div id="ana-film-topic2" style="display:none">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px">
+          <button onclick="showFilmTopic('home')" class="svg-btn">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,2 4,6 8,10"/></svg>Back
+          </button>
+          <span style="font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Analysis in Film &nbsp;/&nbsp; Topic 02 — Emotional Integration</span>
+        </div>
+
+        <!-- CAROUSEL -->
+        <div class="carousel-wrap">
+          <div class="carousel-progress"><div class="carousel-bar" id="car-bar"></div></div>
+          <div class="carousel-header">
+            <span class="carousel-counter" id="car-counter">Slide 1 of 20</span>
+            <div class="carousel-nav">
+              <button class="svg-btn" id="car-prev" onclick="moveCar(-1)" disabled>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,2 4,6 8,10"/></svg>Prev
+              </button>
+              <button class="svg-btn" id="car-next" onclick="moveCar(1)">
+                Next<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,2 8,6 4,10"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="carousel-slides" id="car-slides">
+
+            <div class="cslide-inner" data-slide="1">
+              <div class="cslide-left"><div class="cslide-num">01</div><div class="cslide-tag">Introduction</div></div>
+              <div class="cslide-right"><div class="cslide-title">Analysis in Film: <em>Inside Out 2</em></div>
+              <div class="cslide-body"><p>In this topic we will work through a <strong>modelled process of analysing film features to support a thesis</strong>.</p><p>Our focus film is <em>Inside Out 2</em> (dir. Kelsey Mann, 2024, Pixar/Disney).</p><p>The purpose of this work is to consolidate your understanding of how analysing film features to support an interpretation looks, and the skills involved in producing cogent analysis.</p></div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="2" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">02</div><div class="cslide-tag">Context</div></div>
+              <div class="cslide-right"><div class="cslide-title">What's <em>Inside Out 2</em> about?</div>
+              <div class="cslide-body"><p>One of the central themes of <em>Inside Out 2</em> is the <strong>emotional upheaval</strong> that accompanies adolescence.</p><p>As Riley transitions from childhood to her teenage years, we witness the introduction of new emotions — Anxiety, Envy, Embarrassment, and Ennui (Boredom) — which reflect the increasingly complex emotional landscape teens must navigate.</p></div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="3" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">03</div><div class="cslide-tag">Big ideas</div></div>
+              <div class="cslide-right"><div class="cslide-title">The focus of our study: growing up</div>
+              <div class="cslide-body"><div class="c-defs">
+                <div class="c-def"><div class="c-def-label">Emotional complexity</div><div class="c-def-body">As Riley enters adolescence, her emotions become more nuanced, reflecting the increasing complexity of human feelings.</div></div>
+                <div class="c-def"><div class="c-def-label">Role of anxiety</div><div class="c-def-body">Anxiety highlights how worry and self-doubt shape our decisions, but also how they can be balanced with other emotions.</div></div>
+                <div class="c-def"><div class="c-def-label">Identity formation</div><div class="c-def-body"><em>Inside Out 2</em> explores how identity evolves in adolescence, showing how emotions influence our sense of self as we grow.</div></div>
+                <div class="c-def"><div class="c-def-label" style="color:var(--accent)">★ Our focus</div><div class="c-def-body"><strong>Emotional integration</strong> — by the film's resolution, different emotions coexist and contribute to Riley's sense-of-self.</div></div>
+              </div></div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="4" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">04</div><div class="cslide-tag">Our prompt</div></div>
+              <div class="cslide-right"><div class="cslide-title">Our modelled prompt</div>
+              <div class="cslide-body">
+                <div class="c-block"><div class="c-block-label">Question</div><p><em>What point of view about emotional integration is communicated in the film Inside Out 2?</em></p></div>
+                <p>To answer an analytical question like this, we need:</p>
+                <div class="c-checklist"><div class="c-check"><div class="c-check-box"></div><span>A <strong>thesis</strong> — a direct, interpretive response to the question</span></div><div class="c-check"><div class="c-check-box"></div><span><strong>Two or three distinct arguments</strong> that show how the thesis is true</span></div><div class="c-check"><div class="c-check-box"></div><span><strong>Evidence</strong> from the film that supports each argument</span></div></div>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="5" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">05</div><div class="cslide-tag">Key terms</div></div>
+              <div class="cslide-right"><div class="cslide-title">Let's get some terms straight</div>
+              <div class="cslide-body"><div class="c-defs">
+                <div class="c-def"><div class="c-def-label">Emotional integration</div><div class="c-def-body">The process of acknowledging, understanding, and using your emotions in a balanced way. It can help you make better decisions and have better relationships.</div></div>
+                <div class="c-def"><div class="c-def-label">Sense of self</div><div class="c-def-body">Your perception of the collection of characteristics that define you — personality traits, abilities, likes and dislikes, your belief system or moral code, and the things that motivate you.</div></div>
+              </div></div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="6" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">06</div><div class="cslide-tag">Thesis</div></div>
+              <div class="cslide-right"><div class="cslide-title">What makes a strong thesis?</div>
+              <div class="cslide-body">
+                <p>A strong thesis needs two key ingredients:</p>
+                <div class="c-pills"><span class="c-pill">A strong analytical verb</span><span class="c-pill">A specific and thoughtful interpretation</span></div>
+                <p style="font-size:.75rem;color:var(--muted);margin-top:6px">e.g. conveys · constructs · positions · argues · suggests · demonstrates</p>
+                <div class="c-block" style="margin-top:20px"><div class="c-block-label">Modelled thesis</div><p>In <em>Inside Out 2</em>, director Kelsey Mann <strong>conveys</strong> that emotional integration — that is, embracing and balancing a wider range of emotions — is essential for personal growth and self-understanding during adolescence.</p></div>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="7" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">07</div><div class="cslide-tag">Planning</div></div>
+              <div class="cslide-right"><div class="cslide-title">Thesis and two arguments</div>
+              <div class="cslide-body">
+                <p>My arguments need to <strong>show how my thesis is true</strong>.</p>
+                <table class="c-table"><tr><th colspan="2">Thesis</th></tr><tr class="thesis"><td colspan="2"><em>In Inside Out 2, director Kelsey Mann conveys that emotional integration, that is embracing and balancing a wider range of emotions, is essential for personal growth and self-understanding during adolescence.</em></td></tr><tr><th>Argument 1</th><th>Argument 2</th></tr><tr><td>Riley's initial struggle stems from her mind's attempt to suppress unpleasant emotions, leading to internal conflict and emotional imbalance.</td><td>Riley's acceptance and integration of all her emotions demonstrate that true emotional growth comes from acknowledging and balancing both positive and difficult feelings.</td></tr></table>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="8" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">08</div><div class="cslide-tag">Sense of self</div></div>
+              <div class="cslide-right"><div class="cslide-title">Sense-of-self in <em>Inside Out 2</em></div>
+              <div class="cslide-body">
+                <p>Before puberty, Riley's sense-of-self is built from Joy's carefully selected memories — all positive, reinforcing the idea that she is a good friend and a good person.</p>
+                <div class="c-block"><div class="c-block-label">Key question</div><p>What's the problem with doing this? Joy's mantra — "Keep the best, toss the rest!" — will be our entry point for analysis.</p></div>
+                <p>We will watch the opening scene once, then watch a second time to identify the aesthetic features and stylistic devices operating within it.</p>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="9" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">09</div><div class="cslide-tag">Framework</div></div>
+              <div class="cslide-right"><div class="cslide-title">Framework for analysis</div>
+              <div class="cslide-body">
+                <p><strong>Analysis has three components:</strong></p>
+                <div class="c-trio"><div class="c-trio-item"><div class="c-trio-num">1.</div><div class="c-trio-label">What?</div><div class="c-trio-body">Identification of an aesthetic feature or stylistic device within the text</div></div><div class="c-trio-item"><div class="c-trio-num">2.</div><div class="c-trio-label">How?</div><div class="c-trio-body">Explanation of the <em>effect</em> of the aesthetic feature or stylistic device</div></div><div class="c-trio-item"><div class="c-trio-num">3.</div><div class="c-trio-label">So what?</div><div class="c-trio-body">Explanation of the <em>significance</em> of this effect in relation to your thesis</div></div></div>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="10" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">10</div><div class="cslide-tag">Features</div></div>
+              <div class="cslide-right"><div class="cslide-title">Which film features are important in this scene?</div>
+              <div class="cslide-body">
+                <table class="c-feat-table"><tr><th>Aesthetic features</th><th>Stylistic devices</th></tr><tr><td>Poetic: alliteration, assonance, imagery, metaphor, personification, simile, symbolism</td><td>Text structures</td></tr><tr><td>Written: imagery, irony, metaphor, motif, personification, representation, symbolism</td><td>Juxtaposition, e.g. of two contrasting settings</td></tr><tr><td>Spoken: imagery, motif, rhetoric, symbolism</td><td>Approaches to narration; narrative viewpoint</td></tr><tr><td>Film: costuming, editing, imagery, motif, photography, screenplay, symbolism</td><td>Approaches to characterisation; figurative devices</td></tr><tr><td>Dramatic: costuming, dialogue, motif, style, symbolism</td><td>Rhetorical devices; sound devices; visual devices</td></tr></table>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="11" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">11</div><div class="cslide-tag">Identifying</div></div>
+              <div class="cslide-right"><div class="cslide-title">Identify the aesthetic feature: dialogue</div>
+              <div class="cslide-body">
+                <p>What? How? So, what? Let's start with the <em>what</em>…</p>
+                <div class="c-steps"><div class="c-step"><div class="c-step-label">What?</div><div class="c-step-body">The phrase "keep the best, toss the rest" is a <strong>line of dialogue</strong> spoken by Joy.</div></div><div class="c-step"><div class="c-step-label">How?</div><div class="c-step-body">Now we need: explanation of the <em>effect</em> of the aesthetic feature or stylistic device.</div></div></div>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="12" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">12</div><div class="cslide-tag">Effect</div></div>
+              <div class="cslide-right"><div class="cslide-title">Explaining the effect</div>
+              <div class="cslide-body">
+                <div class="c-steps"><div class="c-step"><div class="c-step-label">What?</div><div class="c-step-body">A <strong>line of dialogue</strong> spoken by Joy.</div></div><div class="c-step"><div class="c-step-label">How?</div><div class="c-step-body"><em>Signifying her approach to managing Riley's memories, where she actively selects and stores the positive experiences while discarding the less favourable ones.</em></div></div><div class="c-step"><div class="c-step-label">So what?</div><div class="c-step-body">Now we need: explanation of the <em>significance</em> of this effect in relation to your thesis.</div></div></div>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="13" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">13</div><div class="cslide-tag">Depth</div></div>
+              <div class="cslide-right"><div class="cslide-title">Adding depth and detail</div>
+              <div class="cslide-body">
+                <div class="c-steps"><div class="c-step"><div class="c-step-label">What?</div><div class="c-step-body">A <strong>line of dialogue</strong> spoken by Joy.</div></div><div class="c-step"><div class="c-step-label">How?</div><div class="c-step-body"><em>Signifying her approach to managing Riley's memories…</em> <strong>This line of dialogue reflects her character's tendency to prioritise happiness and optimism.</strong></div></div><div class="c-step"><div class="c-step-label">So what?</div><div class="c-step-body">Can we elaborate on this to add depth and detail? We sure can!</div></div></div>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="14" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">14</div><div class="cslide-tag">Worked example</div></div>
+              <div class="cslide-right"><div class="cslide-title">Analysis of dialogue</div>
+              <div class="cslide-body">
+                <div class="c-para">The phrase "keep the best, toss the rest" is a line of dialogue spoken by Joy <em>signifying her approach to managing Riley's memories, where she actively selects and stores the positive experiences while discarding the less favourable ones</em>. This line of dialogue reflects her character's tendency to prioritise happiness and optimism. Yet, while Joy's insistence that positivity is the key to wellbeing positions audiences to recognise her genuine care for Riley, her dialogue also conveys a misguided approach to happiness, one that favours emotional suppression rather than integration.</div>
+                <p style="font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-top:16px">Mic drop.</p>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="15" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">15</div><div class="cslide-tag">Full paragraph</div></div>
+              <div class="cslide-right"><div class="cslide-title">Argument Paragraph 1 — complete</div>
+              <div class="cslide-body"><div class="c-para">At the beginning of <em>Inside Out 2</em>, Riley's initial struggle stems from her mind's attempt to suppress unpleasant emotions like Anxiety and Embarrassment, leading to internal conflict and emotional imbalance. In an important opening scene, the character Joy introduces a machine designed to throw bad memories to the back of Riley's as a way to protect her from negative emotions. In this scene, Joy describes her approach by announcing, "keep the best, toss the rest." This line of dialogue spoken by Joy signifies her approach to managing Riley's memories, where she actively selects and stores the positive experiences while discarding the less favourable ones. In this way, the film reflects Joy's tendency to prioritise happiness and optimism over all else. Yet, while Joy's insistence that positivity is the key to wellbeing positions audiences to recognise her genuine care for Riley, her dialogue also conveys a misguided approach to happiness, one that favours emotional suppression rather than integration.</div></div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="16" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">16</div><div class="cslide-tag">Your turn</div></div>
+              <div class="cslide-right"><div class="cslide-title">Over to you</div>
+              <div class="cslide-body">
+                <p>Choose <em>another</em> aesthetic feature or stylistic device from this scene to analyse and <em>develop</em> the argument paragraph.</p>
+                <div class="c-block"><div class="c-block-label">Task</div><p>Finish the paragraph by analysing a second aesthetic feature or stylistic device from the same scene. Apply the <strong>What? How? So what?</strong> framework. Scroll down to the Activity section to write your response.</p></div>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="17" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">17</div><div class="cslide-tag">Reference</div></div>
+              <div class="cslide-right"><div class="cslide-title">Aesthetic features to consider</div>
+              <div class="cslide-body"><div class="c-defs">
+                <div class="c-def"><div class="c-def-label">Film devices</div><div class="c-def-body">Costuming, editing, imagery, motif, photography, symbolism</div></div>
+                <div class="c-def"><div class="c-def-label">Dramatic devices</div><div class="c-def-body">Characterisation, dialogue, motif, symbolism</div></div>
+                <div class="c-def"><div class="c-def-label">Stylistic devices</div><div class="c-def-body">Approaches to characterisation, use of figurative devices, narrative viewpoint</div></div>
+              </div></div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="18" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">18</div><div class="cslide-tag">Checklist</div></div>
+              <div class="cslide-right"><div class="cslide-title">Before you write</div>
+              <div class="cslide-body">
+                <div style="border-top:1px solid var(--border)">
+                  <div class="c-done"><div class="c-done-tick">☐</div><span>I have identified a specific aesthetic feature or stylistic device <strong>(What?)</strong></span></div>
+                  <div class="c-done"><div class="c-done-tick">☐</div><span>I have explained the effect of this feature in the scene <strong>(How?)</strong></span></div>
+                  <div class="c-done"><div class="c-done-tick">☐</div><span>I have connected this effect to the thesis about emotional integration <strong>(So what?)</strong></span></div>
+                  <div class="c-done"><div class="c-done-tick">☐</div><span>My analysis adds to, rather than repeats, the modelled paragraph</span></div>
+                </div>
+                <div class="c-block" style="margin-top:20px"><div class="c-block-label">Thesis reminder</div><p>In <em>Inside Out 2</em>, director Kelsey Mann conveys that emotional integration, that is embracing and balancing a wider range of emotions, is essential for personal growth and self-understanding during adolescence.</p></div>
+              </div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="19" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">19</div><div class="cslide-tag">Timing</div></div>
+              <div class="cslide-right"><div class="cslide-title">Class activity plan</div>
+              <div class="cslide-body"><div class="c-defs">
+                <div class="c-def"><div class="c-def-label">5 minutes</div><div class="c-def-body">As a class, note other aesthetic features or stylistic devices you may wish to analyse from the opening scene.</div></div>
+                <div class="c-def"><div class="c-def-label">15 minutes</div><div class="c-def-body">Independently write the second half of the argument paragraph using a feature of your choice. You are building an analytical argument paragraph that supports the thesis.</div></div>
+              </div></div></div>
+            </div>
+
+            <div class="cslide-inner" data-slide="20" style="display:none">
+              <div class="cslide-left"><div class="cslide-num">20</div><div class="cslide-tag">Complete</div></div>
+              <div class="cslide-right"><div class="cslide-title">You've completed the slides</div>
+              <div class="cslide-body">
+                <div style="border-top:1px solid var(--border)">
+                  <div class="c-done"><div class="c-done-tick">✦</div><span>Identified the big ideas in <em>Inside Out 2</em></span></div>
+                  <div class="c-done"><div class="c-done-tick">✦</div><span>Constructed a thesis using an analytical verb</span></div>
+                  <div class="c-done"><div class="c-done-tick">✦</div><span>Planned two arguments to support the thesis</span></div>
+                  <div class="c-done"><div class="c-done-tick">✦</div><span>Applied the What? How? So what? framework to dialogue</span></div>
+                  <div class="c-done"><div class="c-done-tick">✦</div><span>Read the complete modelled argument paragraph</span></div>
+                </div>
+                <div class="c-block" style="margin-top:24px"><div class="c-block-label">Next step</div><p>Scroll down to the <strong>Activity</strong> section to complete your own analysis.</p></div>
+              </div></div>
+            </div>
+
+          </div><!-- end carousel-slides -->
+        </div><!-- end carousel-wrap -->
+
+            <div class="cslide on" data-slide="1">
+              <div class="cslide-left"><div class="cslide-num">01</div><div class="cslide-tag">Introduction</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Analysis in Film: <em>Inside Out 2</em></div>
+                <div class="cslide-body">
+                  <p>In this topic we will work through a <strong>modelled process of analysing film features to support a thesis</strong>.</p>
+                  <p>Our focus film is <em>Inside Out 2</em> (dir. Kelsey Mann, 2024, Pixar/Disney).</p>
+                  <p>The purpose of this work is to consolidate your understanding of how analysing film features to support an interpretation looks, and the skills involved in producing cogent analysis.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="2">
+              <div class="cslide-left"><div class="cslide-num">02</div><div class="cslide-tag">Context</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">What's <em>Inside Out 2</em> about?</div>
+                <div class="cslide-body">
+                  <p>One of the central themes of <em>Inside Out 2</em> is the <strong>emotional upheaval</strong> that accompanies adolescence.</p>
+                  <p>As Riley transitions from childhood to her teenage years, we witness the introduction of new emotions — Anxiety, Envy, Embarrassment, and Ennui (Boredom) — which reflect the increasingly complex emotional landscape teens must navigate.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="3">
+              <div class="cslide-left"><div class="cslide-num">03</div><div class="cslide-tag">Big ideas</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">The focus of our study: growing up</div>
+                <div class="cslide-body">
+                  <div class="c-defs">
+                    <div class="c-def"><div class="c-def-label">Emotional complexity</div><div class="c-def-body">As Riley enters adolescence, her emotions become more nuanced, reflecting the increasing complexity of human feelings.</div></div>
+                    <div class="c-def"><div class="c-def-label">Role of anxiety</div><div class="c-def-body">Anxiety highlights how worry and self-doubt shape our decisions, but also how they can be balanced with other emotions.</div></div>
+                    <div class="c-def"><div class="c-def-label">Identity formation</div><div class="c-def-body"><em>Inside Out 2</em> explores how identity evolves in adolescence, showing how emotions influence our sense of self as we grow.</div></div>
+                    <div class="c-def"><div class="c-def-label" style="color:var(--accent)">★ Our focus</div><div class="c-def-body"><strong>Emotional integration</strong> — By the film's resolution, different emotions coexist and contribute to Riley's sense-of-self.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="4">
+              <div class="cslide-left"><div class="cslide-num">04</div><div class="cslide-tag">Our prompt</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Our modelled prompt</div>
+                <div class="cslide-body">
+                  <div class="c-block"><div class="c-block-label">Question</div><p><em>What point of view about emotional integration is communicated in the film Inside Out 2?</em></p></div>
+                  <p style="margin-top:20px">To answer an analytical question like this, we need:</p>
+                  <div class="c-checklist" style="margin-top:12px">
+                    <div class="c-check"><div class="c-check-box"></div><span>A <strong>thesis</strong> — a direct, interpretive response to the question</span></div>
+                    <div class="c-check"><div class="c-check-box"></div><span><strong>Two or three distinct arguments</strong> that show how the thesis is true</span></div>
+                    <div class="c-check"><div class="c-check-box"></div><span><strong>Evidence</strong> from the film that supports each argument</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="5">
+              <div class="cslide-left"><div class="cslide-num">05</div><div class="cslide-tag">Key terms</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Let's get some terms straight</div>
+                <div class="cslide-body">
+                  <div class="c-defs">
+                    <div class="c-def"><div class="c-def-label">Emotional integration</div><div class="c-def-body">The process of acknowledging, understanding, and using your emotions in a balanced way. It can help you make better decisions and have better relationships.</div></div>
+                    <div class="c-def"><div class="c-def-label">Sense of self</div><div class="c-def-body">Your perception of the collection of characteristics that define you — personality traits, abilities, likes and dislikes, your belief system or moral code, and the things that motivate you.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="6">
+              <div class="cslide-left"><div class="cslide-num">06</div><div class="cslide-tag">Thesis</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">What makes a strong thesis?</div>
+                <div class="cslide-body">
+                  <p>A strong thesis needs two key ingredients:</p>
+                  <div class="c-pills"><span class="c-pill">A strong analytical verb</span><span class="c-pill">A specific and thoughtful interpretation</span></div>
+                  <p style="margin-top:6px;font-size:.75rem;color:var(--muted)">e.g. conveys · constructs · positions · argues · suggests · demonstrates</p>
+                  <div class="c-block" style="margin-top:20px"><div class="c-block-label">Modelled thesis</div><p>In <em>Inside Out 2</em>, director Kelsey Mann <strong>conveys</strong> that emotional integration — that is, embracing and balancing a wider range of emotions — is essential for personal growth and self-understanding during adolescence.</p></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="7">
+              <div class="cslide-left"><div class="cslide-num">07</div><div class="cslide-tag">Planning</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Thesis and two arguments</div>
+                <div class="cslide-body">
+                  <p>My arguments need to <strong>show how my thesis is true</strong>.</p>
+                  <table class="c-table" style="margin-top:16px">
+                    <tr><th colspan="2">Thesis</th></tr>
+                    <tr class="thesis"><td colspan="2"><em>In Inside Out 2, director Kelsey Mann conveys that emotional integration, that is embracing and balancing a wider range of emotions, is essential for personal growth and self-understanding during adolescence.</em></td></tr>
+                    <tr><th>Argument 1</th><th>Argument 2</th></tr>
+                    <tr><td>At the beginning of <em>Inside Out 2</em>, Riley's initial struggle stems from her mind's attempt to suppress unpleasant emotions, leading to internal conflict and emotional imbalance.</td><td>Riley's acceptance and integration of all her emotions demonstrate that true emotional growth comes from acknowledging and balancing both positive and difficult feelings.</td></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="8">
+              <div class="cslide-left"><div class="cslide-num">08</div><div class="cslide-tag">Sense of self</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Sense-of-self in <em>Inside Out 2</em></div>
+                <div class="cslide-body">
+                  <p>Before puberty, Riley's sense-of-self is built from Joy's carefully selected memories — all positive, reinforcing the idea that she is a good friend and a good person.</p>
+                  <div class="c-block" style="margin-top:20px"><div class="c-block-label">Key question</div><p>What's the problem with doing this? Joy's mantra — "Keep the best, toss the rest!" — will be our entry point for analysis.</p></div>
+                  <p style="margin-top:20px">We will watch the opening scene once, then watch a second time to identify the aesthetic features and stylistic devices operating within it.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="9">
+              <div class="cslide-left"><div class="cslide-num">09</div><div class="cslide-tag">Framework</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Framework for analysis</div>
+                <div class="cslide-body">
+                  <p><strong>Analysis has three components:</strong></p>
+                  <div class="c-trio">
+                    <div class="c-trio-item"><div class="c-trio-num">1.</div><div class="c-trio-label">What?</div><div class="c-trio-body">Identification of an aesthetic feature or stylistic device within the text</div></div>
+                    <div class="c-trio-item"><div class="c-trio-num">2.</div><div class="c-trio-label">How?</div><div class="c-trio-body">Explanation of the <em>effect</em> of the aesthetic feature or stylistic device</div></div>
+                    <div class="c-trio-item"><div class="c-trio-num">3.</div><div class="c-trio-label">So what?</div><div class="c-trio-body">Explanation of the <em>significance</em> of this effect in relation to your thesis</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="10">
+              <div class="cslide-left"><div class="cslide-num">10</div><div class="cslide-tag">Features</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Which film features are important in this scene?</div>
+                <div class="cslide-body">
+                  <table class="c-feat-table">
+                    <tr><th>Aesthetic features</th><th>Stylistic devices</th></tr>
+                    <tr><td>Poetic: alliteration, assonance, imagery, metaphor, personification, simile, symbolism</td><td>Text structures</td></tr>
+                    <tr><td>Written: imagery, irony, metaphor, motif, personification, representation, symbolism</td><td>Juxtaposition, e.g. of two contrasting settings</td></tr>
+                    <tr><td>Spoken: imagery, motif, rhetoric, symbolism</td><td>Approaches to narration</td></tr>
+                    <tr><td>Film: costuming, editing, imagery, motif, photography, screenplay, symbolism</td><td>Narrative viewpoint; approaches to characterisation</td></tr>
+                    <tr><td>Dramatic: costuming, dialogue, motif, style, symbolism</td><td>Figurative devices; rhetorical devices; sound devices; visual devices</td></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="11">
+              <div class="cslide-left"><div class="cslide-num">11</div><div class="cslide-tag">Identifying</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Identify the aesthetic feature: dialogue</div>
+                <div class="cslide-body">
+                  <p>What? How? So, what? Let's start with the <em>what</em>…</p>
+                  <div class="c-steps" style="margin-top:16px">
+                    <div class="c-step"><div class="c-step-label">What?</div><div class="c-step-body">The phrase "keep the best, toss the rest" is a <strong>line of dialogue</strong> spoken by Joy.</div></div>
+                    <div class="c-step"><div class="c-step-label">How?</div><div class="c-step-body">Now we need: explanation of the <em>effect</em> of the aesthetic feature or stylistic device.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="12">
+              <div class="cslide-left"><div class="cslide-num">12</div><div class="cslide-tag">Effect</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Explaining the effect</div>
+                <div class="cslide-body">
+                  <div class="c-steps">
+                    <div class="c-step"><div class="c-step-label">What?</div><div class="c-step-body">A <strong>line of dialogue</strong> spoken by Joy.</div></div>
+                    <div class="c-step"><div class="c-step-label">How?</div><div class="c-step-body"><em>Signifying her approach to managing Riley's memories, where she actively selects and stores the positive experiences while discarding the less favourable ones.</em></div></div>
+                    <div class="c-step"><div class="c-step-label">So what?</div><div class="c-step-body">Now we need: explanation of the <em>significance</em> of this effect in relation to your thesis.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="13">
+              <div class="cslide-left"><div class="cslide-num">13</div><div class="cslide-tag">Depth</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Adding depth and detail</div>
+                <div class="cslide-body">
+                  <div class="c-steps">
+                    <div class="c-step"><div class="c-step-label">What?</div><div class="c-step-body">A <strong>line of dialogue</strong> spoken by Joy.</div></div>
+                    <div class="c-step"><div class="c-step-label">How?</div><div class="c-step-body"><em>Signifying her approach to managing Riley's memories, where she actively selects and stores the positive experiences while discarding the less favourable ones.</em> <strong>This line of dialogue reflects her character's tendency to prioritise happiness and optimism.</strong></div></div>
+                    <div class="c-step"><div class="c-step-label">So what?</div><div class="c-step-body">Can we elaborate on this to add depth and detail? We sure can!</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="14">
+              <div class="cslide-left"><div class="cslide-num">14</div><div class="cslide-tag">Worked example</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Analysis of dialogue</div>
+                <div class="cslide-body">
+                  <div class="c-para">The phrase "keep the best, toss the rest" is a line of dialogue spoken by Joy <em>signifying her approach to managing Riley's memories, where she actively selects and stores the positive experiences while discarding the less favourable ones</em>. This line of dialogue reflects her character's tendency to prioritise happiness and optimism. Yet, while Joy's insistence that positivity is the key to wellbeing positions audiences to recognise her genuine care for Riley, her dialogue also conveys a misguided approach to happiness, one that favours emotional suppression rather than integration.</div>
+                  <p style="margin-top:16px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Mic drop.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="15">
+              <div class="cslide-left"><div class="cslide-num">15</div><div class="cslide-tag">Full paragraph</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Argument Paragraph 1 — complete</div>
+                <div class="cslide-body">
+                  <div class="c-para">At the beginning of <em>Inside Out 2</em>, Riley's initial struggle stems from her mind's attempt to suppress unpleasant emotions like Anxiety and Embarrassment, leading to internal conflict and emotional imbalance. In an important opening scene, the character Joy introduces a machine designed to throw bad memories to the back of Riley's as a way to protect her from negative emotions. In this scene, Joy describes her approach by announcing, "keep the best, toss the rest." This line of dialogue spoken by Joy signifies her approach to managing Riley's memories, where she actively selects and stores the positive experiences while discarding the less favourable ones. In this way, the film reflects Joy's tendency to prioritise happiness and optimism over all else. Yet, while Joy's insistence that positivity is the key to wellbeing positions audiences to recognise her genuine care for Riley, her dialogue also conveys a misguided approach to happiness, one that favours emotional suppression rather than integration.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="16">
+              <div class="cslide-left"><div class="cslide-num">16</div><div class="cslide-tag">Your turn</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Over to you</div>
+                <div class="cslide-body">
+                  <p>Choose <em>another</em> aesthetic feature or stylistic device from this scene that you could analyse to <em>develop</em> this analysis.</p>
+                  <div class="c-block" style="margin-top:20px"><div class="c-block-label">Task</div><p>Finish this paragraph by analysing a second aesthetic feature or stylistic device from the same scene. Apply the <strong>What? How? So what?</strong> framework. Scroll down to the Activity section to write your response.</p></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="17">
+              <div class="cslide-left"><div class="cslide-num">17</div><div class="cslide-tag">Reference</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Aesthetic features to consider</div>
+                <div class="cslide-body">
+                  <p>Think about which of these you noticed in the opening scene:</p>
+                  <div class="c-defs" style="margin-top:12px">
+                    <div class="c-def"><div class="c-def-label">Film devices</div><div class="c-def-body">Costuming, editing, imagery, motif, photography, symbolism</div></div>
+                    <div class="c-def"><div class="c-def-label">Dramatic devices</div><div class="c-def-body">Characterisation, dialogue, motif, symbolism</div></div>
+                    <div class="c-def"><div class="c-def-label">Stylistic devices</div><div class="c-def-body">Approaches to characterisation, use of figurative devices, narrative viewpoint</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="18">
+              <div class="cslide-left"><div class="cslide-num">18</div><div class="cslide-tag">Checklist</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Before you write</div>
+                <div class="cslide-body">
+                  <div style="border-top:1px solid var(--border);margin-top:8px">
+                    <div class="c-done"><div class="c-done-tick">☐</div><span>I have identified a specific aesthetic feature or stylistic device <strong>(What?)</strong></span></div>
+                    <div class="c-done"><div class="c-done-tick">☐</div><span>I have explained the effect of this feature in the scene <strong>(How?)</strong></span></div>
+                    <div class="c-done"><div class="c-done-tick">☐</div><span>I have connected this effect to the thesis about emotional integration <strong>(So what?)</strong></span></div>
+                    <div class="c-done"><div class="c-done-tick">☐</div><span>My analysis adds to, rather than repeats, the modelled paragraph</span></div>
+                  </div>
+                  <div class="c-block" style="margin-top:20px"><div class="c-block-label">Thesis reminder</div><p>In <em>Inside Out 2</em>, director Kelsey Mann conveys that emotional integration, that is embracing and balancing a wider range of emotions, is essential for personal growth and self-understanding during adolescence.</p></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="19">
+              <div class="cslide-left"><div class="cslide-num">19</div><div class="cslide-tag">Timing</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">Class activity plan</div>
+                <div class="cslide-body">
+                  <div class="c-defs">
+                    <div class="c-def"><div class="c-def-label">5 minutes</div><div class="c-def-body">As a class, note other aesthetic features or stylistic devices you may wish to analyse from the opening scene.</div></div>
+                    <div class="c-def"><div class="c-def-label">15 minutes</div><div class="c-def-body">Independently write the second half of the argument paragraph using a feature of your choice. You are building an analytical argument paragraph that supports the thesis.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cslide" data-slide="20">
+              <div class="cslide-left"><div class="cslide-num">20</div><div class="cslide-tag">Complete</div></div>
+              <div class="cslide-divider"></div>
+              <div class="cslide-right">
+                <div class="cslide-title">You've completed the slides</div>
+                <div class="cslide-body">
+                  <p>You have now worked through the full modelled analysis process:</p>
+                  <div style="border-top:1px solid var(--border);margin-top:14px">
+                    <div class="c-done"><div class="c-done-tick">✦</div><span>Identified the big ideas in <em>Inside Out 2</em></span></div>
+                    <div class="c-done"><div class="c-done-tick">✦</div><span>Constructed a thesis using an analytical verb</span></div>
+                    <div class="c-done"><div class="c-done-tick">✦</div><span>Planned two arguments to support the thesis</span></div>
+                    <div class="c-done"><div class="c-done-tick">✦</div><span>Applied the What? How? So what? framework to dialogue</span></div>
+                    <div class="c-done"><div class="c-done-tick">✦</div><span>Read the complete modelled argument paragraph</span></div>
+                  </div>
+                  <div class="c-block" style="margin-top:24px"><div class="c-block-label">Next step</div><p>Scroll down to the <strong>Activity</strong> section to complete your own analysis.</p></div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end slides -->
+        </div><!-- end carousel -->
+
+        <!-- ACTIVITY -->
+        <div class="activity-wrap">
+          <div class="activity-header">
+            <h3>Activity — Emotional Integration</h3>
+            <span>Inside Out 2 &nbsp;·&nbsp; Analysis Task</span>
+          </div>
+          <div class="activity-body">
+            <div class="activity-section">
+              <div class="activity-label">The Question</div>
+              <div class="activity-q">What point of view about <strong>emotional integration</strong> is communicated in the film <em>Inside Out 2</em>?</div>
+              <div style="border-top:2px solid var(--border);padding-top:14px;margin-top:4px">
+                <p style="font-family:'Montserrat',sans-serif;font-size:.84rem;line-height:1.7"><strong>Thesis:</strong> In <em>Inside Out 2</em>, director Kelsey Mann conveys that emotional integration, that is embracing and balancing a wider range of emotions, is essential for personal growth and self-understanding during adolescence.</p>
+              </div>
+            </div>
+            <div class="activity-section">
+              <div class="activity-label">Modelled Argument Paragraph 1</div>
+              <div class="modelled-para">At the beginning of <em>Inside Out 2</em>, Riley's initial struggle stems from her mind's attempt to suppress unpleasant emotions like Anxiety and Embarrassment, leading to internal conflict and emotional imbalance. In an important opening scene, the character Joy introduces a machine designed to throw bad memories to the back of Riley's as a way to protect her from negative emotions. In this scene, Joy describes her approach by announcing, "keep the best, toss the rest." This line of dialogue spoken by Joy signifies her approach to managing Riley's memories, where she actively selects and stores the positive experiences while discarding the less favourable ones. In this way, the film reflects Joy's tendency to prioritise happiness and optimism over all else. Yet, while Joy's insistence that positivity is the key to wellbeing positions audiences to recognise her genuine care for Riley, her dialogue also conveys a misguided approach to happiness, one that favours emotional suppression rather than integration.</div>
+            </div>
+            <div class="activity-section">
+              <div class="activity-label">Your Task</div>
+              <div class="activity-q">Finish this paragraph by analysing a <strong>second aesthetic feature or stylistic device</strong> from the same scene. Use the <strong>What? How? So what?</strong> framework.</div>
+              <textarea class="task-input" id="task-textarea" oninput="autoResize(this)" placeholder="Begin your analysis here — identify a second aesthetic feature or stylistic device from the opening scene of Inside Out 2, explain its effect (How?), then connect it to the thesis (So what?)…"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end topic2 -->
+    </div><!-- end ana-film -->
+
+  </div><!-- end tabs -->
+</section>
+
+</main>
+<script>
+function showSec(id,el){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));document.getElementById('sec-'+id).classList.add('on');el.classList.add('on')}
+function showTab(sec,tab,btn){const s=document.getElementById('sec-'+sec);s.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));s.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));document.getElementById(sec+'-'+tab).classList.add('on');btn.classList.add('on')}
+function checkQuiz(id,answers,names,fbId){
+  let correct=0;
+  answers.forEach((ans,i)=>{
+    const sel=document.querySelector(`input[name="${names[i]}"]:checked`);
+    if(sel&&sel.value===ans)correct++;
+  });
+  const fb=document.getElementById(fbId);
+  if(correct===answers.length){
+    fb.textContent=`All ${correct} correct — well done!`;fb.className='fb ok';
+  } else {
+    fb.textContent=`${correct} of ${answers.length} correct. Review the content above and try again.`;fb.className='fb no';
+  }
+}
+
+const phaseVideos={
+  pre:{id:'U6I1tMgjW-I',title:'Stages of Filmmaking, Ep 2 — The Pre-Production Process Explained'},
+  principal:{id:'U6I1tMgjW-I',title:'Stages of Filmmaking, Ep 3 — Film Production Explained'},
+  post:{id:'qKPHNWEV5_o',title:'Stages of Filmmaking, Ep 4 — Post-Production Explained'}
+};
+function renderPhaseVideo(phase){
+  const block=document.getElementById('phase-vid-block'),wrap=document.getElementById('phase-vid-wrap'),label=document.getElementById('phase-vid-label');
+  if(phase==='all'){block.style.display='none';return}
+  const v=phaseVideos[phase];
+  label.textContent='Watch — '+v.title;
+  wrap.innerHTML=v.id?`<iframe src="https://www.youtube.com/embed/${v.id}" title="${v.title}" allowfullscreen></iframe>`:`<div class="vid-placeholder"><div style="font-size:2rem;opacity:.4">🎬</div><p>${v.title}</p><p style="font-size:.76rem">Video link will be added shortly.</p></div>`;
+  block.style.display='block';
+}
+
+// Group metadata: label shown when specific category is active
+const groupMeta={
+  'shot-size':'Shot Distance',
+  'angle':'Camera Angles',
+  'framing':'Shot Types & Framing',
+  'movement':'Camera Movement',
+  'lighting-focus':'Lighting & Focus',
+  'composition':'Composition & Performance',
+  'diegetic-grp':'Diegetic Sound',
+  'nondiegetic-grp':'Non-diegetic Sound',
+  'edit-process':'The Editing Process',
+  'transitions':'Transitions',
+  'sequences':'Sequences & Techniques',
+  'continuity-rule':'Continuity',
+  'structure':'Narrative Structure',
+  'character':'Character',
+  'conflict-meaning':'Conflict & Meaning',
+  'genre-type':'Genre',
+  'story-devices':'Story Devices',
+  'script-doc':'Script & Pre-visualisation',
+  'above':'Above-the-line',
+  'below-camera':'Camera, Sound & Lighting',
+  'below-design':'Design & Costume',
+  'below-post':'Post-production',
+  'visual-fx':'Visual Effects & Animation',
+  'prod-process':'Production Process',
+};
+
+// Subcategory filter buttons per category
+const subcatMap={
+  'Cinematography':['Shots & Angles','Movement','Lighting & Focus','Composition & Performance'],
+  'Sound':['Diegetic','Non-diegetic'],
+  'People':['Above-the-line','Below-the-line']
+};
+
+// c=category, s=subcategory (for filter), grp=visual group, ord=sort order within category
+// p=phases, d=definition, ex=film example
+const G=[
+// ── CINEMATOGRAPHY: SHOT DISTANCE ──
+{t:'Extreme close-up (E.C.U.)',c:'Cinematography',s:'Shots & Angles',grp:'shot-size',ord:10,p:['principal'],d:'Frames a tiny detail — an eye, a hand, a mouth — filling the entire screen. Creates intense intimacy or reveals emotion the viewer might otherwise miss.',ex:'In The Good, the Bad and the Ugly, Leone cuts to extreme close-ups of eyes during the final standoff, building unbearable tension without dialogue.',img:'https://s.studiobinder.com/wp-content/uploads/2022/11/close-up-whiplash-studiobinder-production-planning-software-3.png',imgCap:'ECU example — Whiplash · © StudioBinder'},
+{t:'Close-up (C.U.)',c:'Cinematography',s:'Shots & Angles',grp:'shot-size',ord:11,p:['principal'],d:'Frames a person\'s face (or an object) tightly, making it fill the screen. The primary tool for conveying emotion.',ex:'The close-up of Charles Foster Kane\'s lips whispering "Rosebud" in Citizen Kane opens one of cinema\'s great mysteries.',img:'https://s.studiobinder.com/wp-content/uploads/2025/05/Close-Up-Shot-The-Art-of-the-Camera-Angle-The-Shining-1.jpg',imgCap:'CU example — The Shining · © StudioBinder'},
+{t:'Medium close-up (M.C.U.)',c:'Cinematography',s:'Shots & Angles',grp:'shot-size',ord:12,p:['principal'],d:'Frames from roughly the chest to the top of the head. More intimate than a mid shot but less intense than a full close-up.',ex:'News presenters are typically filmed in a medium close-up — authoritative but approachable, a convention exploited in Network (1976).'},
+{t:'Medium/mid shot (M.S.)',c:'Cinematography',s:'Shots & Angles',grp:'shot-size',ord:13,p:['principal'],d:'Shows a person from the waist up. Balances emotional engagement with a sense of environment. The most common shot in dialogue sequences.',ex:'Most scenes in Casablanca use medium shots to keep both speakers visible and clarify the relationship between characters.',img:'https://s.studiobinder.com/wp-content/uploads/2025/09/Medium-Shot-Example-MS-of-Dennis-Quaid-and-a-group-of-people-from-The-Substance.jpg',imgCap:'MS example — The Substance · © StudioBinder'},
+{t:'Long shot (L.S.)',c:'Cinematography',s:'Shots & Angles',grp:'shot-size',ord:14,p:['principal'],d:'Shows a person from head to foot and much of their surrounding environment. Emphasises the relationship between a figure and their world.',ex:'The opening of Lawrence of Arabia — a tiny figure against an immense desert — uses a long shot to establish isolation and scale.',img:'https://s.studiobinder.com/wp-content/uploads/2019/09/Camera-Shot-Guide-Wide-Shot-The-Martian-StudioBinder.jpeg.webp',imgCap:'LS example — The Martian · © StudioBinder'},
+{t:'Extreme long shot (E.L.S.)',c:'Cinematography',s:'Shots & Angles',grp:'shot-size',ord:15,p:['principal'],d:'A shot from a very great distance, in which the human figure appears very small. Often used to show a character overwhelmed by their environment.',ex:'The sweeping landscapes of The Lord of the Rings use extreme long shots to dwarf the Fellowship against the scale of Middle-earth.',img:'https://s.studiobinder.com/wp-content/uploads/2019/09/Camera-Shot-Guide-Extreme-Wide-Shot-Mad-Mad-Fury-Road-StudioBinder.jpg.webp',imgCap:'ELS example — Mad Max: Fury Road · © StudioBinder'},
+{t:'Establishing shot',c:'Cinematography',s:'Shots & Angles',grp:'shot-size',ord:16,p:['principal'],d:'Usually a long shot that opens a scene to orient the audience: where are we, and what is the overall space? Prevents viewer confusion about setting.',ex:'The helicopter shot over the Overlook Hotel\'s maze garden in The Shining establishes location and signals inescapable entrapment.'},
+// ── CINEMATOGRAPHY: CAMERA ANGLES ──
+{t:'Bird\'s eye / aerial shot',c:'Cinematography',s:'Shots & Angles',grp:'angle',ord:20,p:['principal'],d:'Filmed directly overhead (bird\'s eye, approximately 90°) or from great height (aerial). Can make characters appear small, isolated, or part of a larger pattern.',ex:'Apocalypse Now opens with aerial shots of napalm-burning jungle that abstract the landscape into something almost beautiful — and deeply disturbing.'},
+{t:'Eye-level shot',c:'Cinematography',s:'Shots & Angles',grp:'angle',ord:21,p:['principal'],d:'Camera placed at approximately the height of a standing person: the neutral default. Feels natural and equal — neither imposing nor subordinate.',ex:'Yasujirō Ozu used a very low "tatami-level" eye-level shot as his default, placing viewers on the floor with Japanese domestic life.'},
+{t:'High angle shot',c:'Cinematography',s:'Shots & Angles',grp:'angle',ord:22,p:['principal'],d:'Camera looks down on the subject. Can make a character appear small, vulnerable, powerless, or insignificant relative to their surroundings.',ex:'In Schindler\'s List, high angle shots of the ghetto crowds show the scale of the horror and the powerlessness of individuals within the mass.'},
+{t:'Low angle shot',c:'Cinematography',s:'Shots & Angles',grp:'angle',ord:23,p:['principal'],d:'Camera looks up at the subject. Can make a character appear powerful, threatening, imposing, or heroic.',ex:'Citizen Kane uses extreme low angles to make Kane appear domineering — particularly in his political rally scenes.'},
+{t:'Dutch angle (canted/tilted frame)',c:'Cinematography',s:'Shots & Angles',grp:'angle',ord:24,p:['principal'],d:'The camera is tilted to one side so the horizon sits on a slant. Suggests psychological unease, disorientation, or moral instability. Not the same as a tilt shot, which involves camera movement.',ex:'The Third Man uses pervasive Dutch angles to reflect the corruption and instability of post-war Vienna.'},
+// ── CINEMATOGRAPHY: SHOT TYPES & FRAMING ──
+{t:'Over-shoulder shot (O.S.)',c:'Cinematography',s:'Shots & Angles',grp:'framing',ord:30,p:['principal'],d:'Camera positioned behind one character, looking over their shoulder at the other. Used in dialogue to keep both characters present and show their spatial relationship.',ex:'The Clarice–Hannibal interview scenes in The Silence of the Lambs use over-shoulder shots to maintain physical tension between the two characters.'},
+{t:'Point-of-view shot (P.O.V.)',c:'Cinematography',s:'Shots & Angles',grp:'framing',ord:31,p:['principal'],d:'The camera represents a character\'s eyes — we see exactly what they see. Strongly encourages viewer identification with that character.',ex:'In Halloween, the opening sequence is filmed entirely from the killer\'s POV before revealing it is a small child — a deeply unsettling subversion.'},
+{t:'Subjective shot',c:'Cinematography',s:'Shots & Angles',grp:'framing',ord:32,p:['principal'],d:'A type of point-of-view shot, sometimes distorted to reflect a character\'s emotional or psychological state rather than simply what they see.',ex:'In Requiem for a Dream, distorted wide-angle subjective shots place the viewer inside the characters\' drug-altered perception.'},
+{t:'Reaction shot',c:'Cinematography',s:'Shots & Angles',grp:'framing',ord:33,p:['principal'],d:'A shot showing a character\'s response to the preceding action. Directs the viewer\'s emotional interpretation of an event.',ex:'In Jaws, Brody\'s wide-eyed reaction shot on the beach — immediately after seeing the first shark attack — is one of cinema\'s most imitated moments.'},
+{t:'Two-shot',c:'Cinematography',s:'Shots & Angles',grp:'framing',ord:34,p:['principal'],d:'A shot that frames two characters together. Shows their physical relationship and can suggest equality, tension, intimacy, or opposition.',ex:'The early two-shots of Bonnie and Clyde place them as equals — a deliberate visual statement about their partnership.'},
+{t:'Shot/reverse shot',c:'Cinematography',s:'Shots & Angles',grp:'framing',ord:35,p:['principal'],d:'Two or more shots edited together alternating between characters, typically in conversation. Each character usually looks in the opposite direction.',ex:'Rear Window plays with the convention: the "reverse shot" shows what Jeff imagines is happening across the courtyard.'},
+{t:'Crane shot',c:'Cinematography',s:'Shots & Angles',grp:'framing',ord:36,p:['principal'],d:'A shot taken from a camera mounted on a crane, enabling sweeping vertical and horizontal movement. Often used for grand reveals.',ex:'Gone with the Wind\'s pull-back from Scarlett among the Confederate wounded is one of the most celebrated crane shots in film history.'},
+{t:'Split screen',c:'Cinematography',s:'Shots & Angles',grp:'framing',ord:37,p:['principal','post'],d:'Two or more separate images appearing simultaneously within the same frame.',ex:'Brian De Palma uses split screen in Carrie to show simultaneous events during the prom sequence, building dread on both sides of the frame at once.'},
+// ── CINEMATOGRAPHY: MOVEMENT ──
+{t:'Pan',c:'Cinematography',s:'Movement',grp:'movement',ord:40,p:['principal'],d:'The camera swivels horizontally — left to right or right to left — while the camera body stays fixed on its mount. Used to follow action or reveal a wide space.',ex:'Kurosawa\'s Seven Samurai uses slow, deliberate pans across battlefields to survey chaos and aftermath.'},
+{t:'Tilt shot',c:'Cinematography',s:'Movement',grp:'movement',ord:41,p:['principal'],d:'The camera scans vertically (up or down) while the base stays fixed. Not the same as a Dutch angle, which is a static tilt of the frame.',ex:'A slow tilt down the exterior of a skyscraper is a standard establishment of corporate power; reversed, a tilt up emphasises the smallness of the viewer.'},
+{t:'Zoom',c:'Cinematography',s:'Movement',grp:'movement',ord:42,p:['principal'],d:'The lens adjusts from wide-angle to telephoto (zoom in) or reverse (zoom out) without the camera physically moving. Unlike a tracking shot, the zoom compresses or expands apparent depth.',ex:'The dolly zoom in Jaws — simultaneously tracking out and zooming in — creates a nauseous spatial distortion as Brody reacts to the beach attack.'},
+{t:'Tracking/dolly shot',c:'Cinematography',s:'Movement',grp:'movement',ord:43,p:['principal'],d:'The camera moves on a wheeled platform (dolly) along tracks, moving physically through space alongside or toward/away from the subject.',ex:'The tracking shot following Nicholson through the Overlook Hotel\'s corridors in The Shining creates relentless, inescapable dread.'},
+{t:'Steadicam shot',c:'Cinematography',s:'Movement',grp:'movement',ord:44,p:['principal'],d:'Camera attached to a stabilising vest worn by the operator, allowing smooth handheld movement without rails or tracks.',ex:'The Copacabana tracking shot in Goodfellas uses a Steadicam to follow characters seamlessly through a crowded venue in one unbroken take.'},
+{t:'Handheld camera',c:'Cinematography',s:'Movement',grp:'movement',ord:45,p:['principal'],d:'Camera held by the operator rather than mounted, creating natural movement and a sense of immediacy or documentary realism.',ex:'Children of Men uses long handheld takes during the refugee camp battle sequence to create claustrophobic terror.'},
+{t:'Skycam',c:'Cinematography',s:'Movement',grp:'movement',ord:46,p:['principal'],d:'A lightweight camera suspended by computer-controlled wires and pulleys. Allows sweeping aerial perspectives within enclosed spaces.',ex:'Skycam rigs originally developed for sports broadcasts have since been adopted in large-scale concert films and stadium productions.'},
+{t:'Dolly',c:'Cinematography',s:'Movement',grp:'movement',ord:47,p:['principal'],d:'A wheeled platform on which the camera is mounted, allowing smooth movement during filming. The resulting shot is a "dolly shot" or "tracking shot."',ex:'The carefully choreographed dolly movements in Barry Lyndon give many scenes the quality of a painting slowly coming alive.'},
+// ── CINEMATOGRAPHY: LIGHTING & FOCUS ──
+{t:'Backlighting',c:'Cinematography',s:'Lighting & Focus',grp:'lighting-focus',ord:50,p:['principal'],d:'A light source placed behind the subject. Can create a halo or rim effect, suggest mystery, or produce a full silhouette that reveals shape but conceals identity.',ex:'In Blade Runner, neon backlighting creates haloes around figures in rain-soaked streets, contributing to the film\'s neo-noir atmosphere.'},
+{t:'Deep focus',c:'Cinematography',s:'Lighting & Focus',grp:'lighting-focus',ord:51,p:['principal'],d:'Every plane of the image — from close foreground to distant background — is simultaneously sharp. Allows the director to compose complex scenes across depth without cutting.',ex:'Citizen Kane (cinematographer Gregg Toland) used deep focus to show Kane in the background while other characters react in the foreground.'},
+{t:'Shallow focus',c:'Cinematography',s:'Lighting & Focus',grp:'lighting-focus',ord:52,p:['principal'],d:'Only one plane of the image is in sharp focus; the background (or foreground) is blurred. Directs the viewer\'s attention and can isolate a character from their surroundings.',ex:'Portrait of a Lady on Fire uses shallow focus in its close-up portraits to isolate the subject against a soft, impressionistic background.'},
+{t:'Soft focus',c:'Cinematography',s:'Lighting & Focus',grp:'lighting-focus',ord:53,p:['principal'],d:'A deliberately gentle blurring of the image, often created by filters or a diffusion lens. Associated with romance, nostalgia, or dream sequences.',ex:'Classic Hollywood used soft focus on female stars (including Greta Garbo) to create an idealised, luminous appearance.'},
+{t:'Focus / Rack focus',c:'Cinematography',s:'Lighting & Focus',grp:'lighting-focus',ord:54,p:['principal'],d:'The sharpness of an image, controlled by adjusting the camera lens. "Pulling focus" (or "racking focus") shifts the sharp plane from one subject to another mid-shot.',ex:'In The Social Network, focus pulls between characters during arguments, shifting attention as the power dynamic in the scene shifts.'},
+{t:'Grain',c:'Cinematography',s:'Lighting & Focus',grp:'lighting-focus',ord:55,p:['principal'],d:'The visible texture in film emulsion. Heavy grain can give a film a raw, documentary, or nostalgic quality.',ex:'Saving Private Ryan uses desaturated, grainy photography in the Omaha Beach sequence to evoke wartime photojournalism.'},
+{t:'Frame',c:'Cinematography',s:'Lighting & Focus',grp:'lighting-focus',ord:56,p:['principal'],d:'Two related meanings: (1) the rectangular boundary of the image; (2) any single still image from the film. Standard film runs at 24 frames per second.',ex:'Wes Anderson\'s centred, symmetrical framing in The Grand Budapest Hotel makes the frame itself an expressive compositional statement.'},
+{t:'Set-up',c:'Cinematography',s:'Lighting & Focus',grp:'lighting-focus',ord:57,p:['principal'],d:'The precise positioning of the camera and lighting chosen for a particular shot. Each new set-up requires the crew to reposition equipment.',ex:'A single dialogue scene often requires multiple set-ups: over-shoulder on each actor, close-ups, and an establishing wide shot.'},
+// ── CINEMATOGRAPHY: COMPOSITION & PERFORMANCE ──
+{t:'Mise-en-scène',c:'Cinematography',s:'Composition & Performance',grp:'composition',ord:60,p:['principal'],d:'Everything visible within the frame and how it is arranged: setting, lighting, costume, props, performance, and composition. All the choices that shape what we see. From French: "placing on stage."',ex:'"The royal and religious mise-en-scène suggests an intertextual reference to The Last Supper, emphasising the character\'s importance and imminent death."'},
+{t:'Body language',c:'Cinematography',s:'Composition & Performance',grp:'composition',ord:61,p:['principal'],d:'The way a character\'s feelings and intentions are communicated through physical movement, posture, and gesture — without words.',ex:'In There Will Be Blood, Daniel Day-Lewis communicates Plainview\'s menace almost entirely through physical presence and controlled stillness.'},
+
+// ── SOUND: DIEGETIC ──
+{t:'Diegetic sound',c:'Sound',s:'Diegetic',grp:'diegetic-grp',ord:10,p:['principal'],d:'Sound that originates from within the world of the film — characters can hear it. Includes dialogue, ambient noise, and music playing on a radio visible within the scene.',ex:'The ticking of Anton Chigurh\'s cattle gun in No Country for Old Men is diegetic — disturbingly ordinary within a scene of extreme menace.'},
+{t:'Ambient sound',c:'Sound',s:'Diegetic',grp:'diegetic-grp',ord:11,p:['principal'],d:'Background environmental sound that is not music: wind, crowd murmur, birdsong, traffic, rustling. Creates a sense of place and grounds the viewer in the scene\'s physical world.',ex:'Terrence Malick\'s films, including The Tree of Life, are celebrated for rich ambient soundscapes of wind, insects, and water.'},
+{t:'Off camera (O.C.) / Out of shot (O.S.)',c:'Sound',s:'Diegetic',grp:'diegetic-grp',ord:12,p:['principal'],d:'A character speaks while the camera looks elsewhere; the speaker is within the film world but outside the frame. Different from voice over, which implies a narrator outside the scene.',ex:'In many horror films, hearing a character off-camera while watching another character\'s terrified face is more frightening than showing both.'},
+{t:'Foley effects',c:'Sound',s:'Diegetic',grp:'diegetic-grp',ord:13,p:['post'],d:'Sound effects created by a Foley artist in a studio during post-production, added to match on-screen action: footsteps, clothing rustle, door creaks. Named after sound pioneer Jack Foley. Foley recreates the diegetic sounds that the production recording failed to capture.',ex:'Foley artists on period films must research the exact sound of historical fabrics, armour, and footwear to ensure authenticity audiences rarely consciously notice.'},
+{t:'Synchronisation (sync)',c:'Sound',s:'Diegetic',grp:'diegetic-grp',ord:14,p:['post'],d:'The precise matching of sound to visuals. When dialogue matches lip movements exactly, a film is "in sync." A clapper board establishes a sync point between picture and separately-recorded sound.',ex:'The clapper board at the start of each take is a practical sync tool — the sharp crack creates a visible and audible point of alignment.'},
+// ── SOUND: NON-DIEGETIC ──
+{t:'Non-diegetic sound',c:'Sound',s:'Non-diegetic',grp:'nondiegetic-grp',ord:20,p:['post'],d:'Sound added from outside the film world that only the audience hears — characters are unaware of it. Includes musical scores, voiceover narration, and added sound effects.',ex:'The two-note shark theme in Jaws is non-diegetic: the characters cannot hear it, but its approach warns the audience.'},
+{t:'Voice over (V.O.)',c:'Sound',s:'Non-diegetic',grp:'nondiegetic-grp',ord:21,p:['post'],d:'Commentary from a narrator whose voice is heard over images but who is not seen speaking. Can be a character reflecting on past events, or an omniscient narrator outside the story.',ex:'Lester Burnham\'s first-person V.O. in American Beauty — "My name is Lester Burnham…and this is the last day of my life" — establishes irony and intimacy simultaneously.'},
+{t:'Aural bridge',c:'Sound',s:'Non-diegetic',grp:'nondiegetic-grp',ord:22,p:['post'],d:'The sound of the next scene is heard before the cut to it, "bridging" two scenes. Used as a smooth transition device or to create ironic contrast between sound and incoming image.',ex:'In Apocalypse Now, the sound of a helicopter\'s rotor dissolves into the ceiling fan above Willard — an aural bridge connecting two very different worlds.'},
+{t:'Sound effects (SFX)',c:'Sound',s:'Non-diegetic',grp:'nondiegetic-grp',ord:23,p:['post'],d:'Sounds other than dialogue or music, added in post-production to build or enhance the audio environment of a film.',ex:'The lightsaber sounds in Star Wars were created by sound designer Ben Burtt from the hum of an old projector motor and a television set.'},
+{t:'ADR (Automated Dialogue Replacement)',c:'Sound',s:'Non-diegetic',grp:'nondiegetic-grp',ord:24,p:['post'],d:'The re-recording of an actor\'s dialogue in a studio after filming, replacing original audio that was too noisy, unclear, or misperformed.',ex:'Much of the dialogue in Apocalypse Now was replaced via ADR due to location sound challenges during filming in the Philippine jungle.'},
+{t:'Dub',c:'Sound',s:'Non-diegetic',grp:'nondiegetic-grp',ord:25,p:['post'],d:'To record new dialogue after filming, most commonly replacing one language with another for international distribution.',ex:'The Italian neorealist films of Fellini and De Sica were often shot without synchronised sound, with all dialogue dubbed in post-production.'},
+
+// ── EDITING: PROCESS ──
+{t:'Editing',c:'Editing',s:'',grp:'edit-process',ord:10,p:['post'],d:'The process of selecting, arranging, and trimming shots to construct the finished film. Editing controls rhythm, pace, narrative structure, and emotional tone — often described as the "invisible art."',ex:'Walter Murch\'s editing of Apocalypse Now is considered one of cinema\'s landmark achievements in structuring a complex, fragmented narrative.'},
+{t:'Footage',c:'Editing',s:'',grp:'edit-process',ord:11,p:['post'],d:'The total amount of filmed material available for editing. "Rushes" or "dailies" are the unedited footage reviewed after each day of shooting.',ex:'Francis Ford Coppola shot approximately 1.3 million feet of footage for Apocalypse Now before editing it down to a two-and-a-half-hour film.'},
+{t:'Inpoint / Outpoint',c:'Editing',s:'',grp:'edit-process',ord:12,p:['post'],d:'The selected start (inpoint) and end (outpoint) of a shot in the editing timeline — the editor\'s fundamental unit of decision-making.',ex:'A skilled editor\'s choice of inpoint can determine whether a cut feels motivated or arbitrary — often the difference between a good and a great scene.'},
+// ── EDITING: TRANSITIONS ──
+{t:'Cut',c:'Editing',s:'',grp:'transitions',ord:20,p:['post'],d:'The most basic transition: one shot ends and the next immediately begins. The primary tool of editing. Originally referred to the physical cutting of a film strip.',ex:'The 2001: A Space Odyssey bone-to-spacecraft cut — spanning four million years in a single edit — is frequently cited as the most famous cut in film history.'},
+{t:'Dissolve (lap dissolve)',c:'Editing',s:'',grp:'transitions',ord:21,p:['post'],d:'One image fades in while another fades out; they are briefly superimposed at the midpoint. Gentler than a cut — often signals the passage of time or a connection between scenes.',ex:'Dissolves are used throughout the "News on the March" sequence in Citizen Kane to compress years of Kane\'s life into a few minutes.'},
+{t:'Fade-in / Fade-out',c:'Editing',s:'',grp:'transitions',ord:22,p:['post'],d:'A fade-in brings an image up out of complete darkness; a fade-out returns it to black. Marks significant transitions — often the beginning or end of a major narrative section.',ex:'Classic Hollywood films typically opened with a fade-in from black and closed with a fade-out, providing clear narrative bookends.'},
+{t:'Wipe',c:'Editing',s:'',grp:'transitions',ord:23,p:['post'],d:'An optical transition in which one image appears to push or wipe the previous image off the screen. Associated with adventure and fantasy genres.',ex:'George Lucas used wipes throughout the Star Wars saga as a deliberate homage to the serial films of the 1930s.'},
+{t:'Freeze frame',c:'Editing',s:'',grp:'transitions',ord:24,p:['post'],d:'A single frame repeated many times so it appears as a still photograph within the moving film. Can suggest suspended time, a decisive moment, or an ironic ending.',ex:'The 400 Blows ends with a freeze frame of Antoine Doinel at the ocean — a moment of ambiguous freedom made permanent.'},
+// ── EDITING: SEQUENCES & TECHNIQUES ──
+{t:'Montage',c:'Editing',s:'',grp:'sequences',ord:30,p:['post'],d:'A sequence in which many shots are combined in quick succession to compress time, create mood, suggest connections, or sum up a process.',ex:'Rocky\'s training montage condenses weeks of preparation into a few minutes, building emotional momentum toward the film\'s climax.'},
+{t:'Cross-cutting (parallel editing)',c:'Editing',s:'',grp:'sequences',ord:31,p:['post'],d:'Alternating between two or more scenes occurring simultaneously in different locations. Builds tension by implying that events are converging.',ex:'The Godfather\'s baptism sequence cross-cuts between Michael at the christening and assassinations being carried out in his name — a devastating moral juxtaposition.'},
+{t:'Jump cut',c:'Editing',s:'',grp:'sequences',ord:32,p:['post'],d:'An abrupt cut between two similar shots that creates a visible jolt in continuity. Can disorient the viewer or be used deliberately as a stylistic statement.',ex:'Jean-Luc Godard made the jump cut famous in Breathless (1960) as a deliberate rejection of Hollywood\'s smooth continuity editing.'},
+{t:'Match cut',c:'Editing',s:'',grp:'sequences',ord:33,p:['post'],d:'A cut from one shot to another that matches the first shot\'s action, shape, or composition, creating a visual or conceptual link across the edit.',ex:'2001: A Space Odyssey cuts from a bone thrown skyward to a spacecraft — matching shape and trajectory across four million years of human history.'},
+{t:'Flashback / Flash-forward',c:'Editing',s:'',grp:'sequences',ord:34,p:['post'],d:'A cut to a scene from the past (flashback) or future (flash-forward) within an otherwise present-tense narrative. Complicates linear time and can reveal character motivation.',ex:'Rashomon structures its entire narrative through conflicting flashbacks, questioning the reliability of memory and the nature of truth.'},
+// ── EDITING: CONTINUITY ──
+{t:'180-degree rule',c:'Editing',s:'',grp:'continuity-rule',ord:40,p:['principal','post'],d:'A continuity guideline: the camera should remain on one side of an imaginary axis between two characters to maintain consistent screen direction. "Crossing the line" reverses spatial relationships and can confuse the audience.',ex:'The 180-degree rule is broken deliberately in Requiem for a Dream to create spatial disorientation as characters descend into addiction.'},
+
+// ── NARRATIVE: STRUCTURE ──
+{t:'Exposition',c:'Narrative',s:'',grp:'structure',ord:10,p:['pre'],d:'Information delivered early in the narrative to establish background, character, setting, and situation. Good exposition feels natural and embedded rather than forced.',ex:'The opening text crawl of Star Wars is pure exposition — world-building delivered efficiently and unapologetically before the action begins.'},
+{t:'Rising action',c:'Narrative',s:'',grp:'structure',ord:11,p:['pre'],d:'The series of events and complications that build tension following the exposition, developing the central conflict and leading toward the climax.',ex:'In Jaws, the rising action includes the failed attempts to close the beach, the escalating attacks, and the assembly of the hunting party.'},
+{t:'Climax',c:'Narrative',s:'',grp:'structure',ord:12,p:['pre'],d:'The moment of highest dramatic tension; the turning point at which the central conflict reaches its peak and is forced toward resolution.',ex:'The final shark confrontation at sea in Jaws is the climax — every element of the rising action has converged to this point.'},
+{t:'Falling action',c:'Narrative',s:'',grp:'structure',ord:13,p:['pre'],d:'Events that follow the climax and begin to unwind the tension, moving toward resolution. The narrative consequence of the climax plays out here.',ex:'In Parasite, the falling action after the garden party violence shows the immediate, devastating aftermath for both families.'},
+{t:'Dénouement (resolution)',c:'Narrative',s:'',grp:'structure',ord:14,p:['pre'],d:'The final tying-up of loose ends after the climax; the narrative returns to a state of equilibrium (changed or restored). From French: "untying the knot."',ex:'The dénouement of The Shawshank Redemption — Andy and Red\'s reunion on the beach — provides emotional closure after the escape serves as the climax.'},
+// ── NARRATIVE: CHARACTER ──
+{t:'Protagonist',c:'Narrative',s:'',grp:'character',ord:20,p:['pre'],d:'The central character the narrative follows; the figure whose goals drive the plot. Does not have to be morally admirable — anti-heroes are protagonists too.',ex:'Walter White in Breaking Bad is a protagonist whose moral disintegration over the series is itself the central dramatic subject.'},
+{t:'Antagonist',c:'Narrative',s:'',grp:'character',ord:21,p:['pre'],d:'The force, character, or entity in direct opposition to the protagonist. May be a person, a social system, nature, or the protagonist\'s own psychology.',ex:'In The Dark Knight, the Joker functions as an antagonist who does not want money or power — only chaos — making him uniquely difficult to defeat.'},
+// ── NARRATIVE: CONFLICT & MEANING ──
+{t:'Conflict',c:'Narrative',s:'',grp:'conflict-meaning',ord:30,p:['pre'],d:'The central struggle that drives the narrative. Types include: person vs person, person vs self, person vs society, person vs nature, person vs technology.',ex:'In Cast Away, the primary conflict is person vs nature (and person vs self), with survival and psychological integrity as the twin stakes.'},
+{t:'Theme',c:'Narrative',s:'',grp:'conflict-meaning',ord:31,p:['pre'],d:'The underlying idea, question, or message a film explores. Themes are abstract concepts — not plot summaries. Examples: corruption, identity, memory, justice, belonging.',ex:'Parasite explores the theme of class inequality through the literal and metaphorical floors of the Park house — the deeper underground, the lower the social position.'},
+{t:'Motif',c:'Narrative',s:'',grp:'conflict-meaning',ord:32,p:['pre','principal'],d:'A recurring image, sound, object, or idea that appears throughout a film, reinforcing its themes and creating internal coherence.',ex:'The recurring image of water in The Shape of Water connects themes of fluidity, otherness, and transformation across the entire film.'},
+// ── NARRATIVE: GENRE ──
+{t:'Genre',c:'Narrative',s:'',grp:'genre-type',ord:40,p:['pre'],d:'A category of film defined by shared conventions, visual codes, character types, and audience expectations. Examples: western, science fiction, horror, romantic comedy, film noir.',ex:'Parasite (2019) moves through comedy, thriller, and tragedy — using genre expectations as a tool to surprise and unsettle the viewer.'},
+// ── NARRATIVE: STORY DEVICES ──
+{t:'MacGuffin',c:'Narrative',s:'',grp:'story-devices',ord:50,p:['pre'],d:'An object, goal, or piece of information that motivates characters and drives the plot, but has little inherent importance of its own. The term was coined by Alfred Hitchcock.',ex:'The briefcase in Pulp Fiction — never opened, never explained — is a classic MacGuffin. Its contents are irrelevant; what matters is the desire it creates.'},
+{t:'Narrative arc',c:'Narrative',s:'',grp:'story-devices',ord:51,p:['pre'],d:'The overall shape of a story as it moves from exposition through rising action, climax, falling action, and dénouement. The trajectory of dramatic change across the whole film.',ex:'The Hero\'s Journey (Joseph Campbell) is one of the most common narrative arc templates — visible in Star Wars, The Lion King, and Moana.'},
+{t:'Sub-text',c:'Narrative',s:'',grp:'story-devices',ord:52,p:['pre','principal'],d:'A character\'s private thoughts, feelings, or motivations that differ from what they express openly. The unsaid meaning beneath the surface of dialogue.',ex:'In The Godfather, Michael\'s quiet, reasonable demeanour in early scenes carries a sub-text of calculated, ruthless ambition that the audience reads but other characters miss.'},
+// ── NARRATIVE: SCRIPT & PRE-VISUALISATION ──
+{t:'Screenplay',c:'Narrative',s:'',grp:'script-doc',ord:60,p:['pre'],d:'A written script for a film including dialogue, action lines, scene headings, and character directions. The foundational document from which all production flows.',ex:'The original Chinatown screenplay by Robert Towne is frequently cited as one of the greatest ever written — a study in elegant structural economy.'},
+{t:'Storyboard',c:'Narrative',s:'',grp:'script-doc',ord:61,p:['pre'],d:'A script presented as a series of drawings and captions showing the planned shots and action for each scene. The visual blueprint of a film, created in pre-production.',ex:'Hitchcock\'s meticulous storyboards for Psycho\'s shower scene mapped approximately 70 different shots to cover 45 seconds of screen time.'},
+
+// ── PEOPLE: ABOVE-THE-LINE ──
+{t:'Director',c:'People',s:'Above-the-line',grp:'above',ord:10,p:['pre','principal','post'],d:'The creative leader of a film; responsible for translating the screenplay into a visual and emotional experience. Directs actors, collaborates with the cinematographer, and drives every creative decision.',ex:'Stanley Kubrick was known for extraordinary precision, directing every element of every frame — one of cinema\'s most influential "auteur" directors.'},
+{t:'Producer',c:'People',s:'Above-the-line',grp:'above',ord:11,p:['pre','principal','post'],d:'Oversees the practical and financial aspects of production — securing funding, managing the budget, scheduling the shoot, and hiring key crew.',ex:'Kathleen Kennedy has produced films from Schindler\'s List and Jurassic Park to the contemporary Star Wars trilogy, making her one of Hollywood\'s most influential producers.'},
+{t:'Executive Producer',c:'People',s:'Above-the-line',grp:'above',ord:12,p:['pre'],d:'The chief financier of a film; oversees business decisions, investment, and the deal-making that enables a production to exist.',ex:'In television, executive producers frequently have significant creative control — the showrunner of a prestige drama series is typically also its executive producer.'},
+{t:'Screenwriter',c:'People',s:'Above-the-line',grp:'above',ord:13,p:['pre'],d:'The writer who creates the screenplay from which the film is made. May adapt an existing work or write an original story.',ex:'Nora Ephron wrote the screenplays for When Harry Met Sally and Sleepless in Seattle, shaping the romantic comedy genre through sharply observed dialogue.'},
+{t:'Cast / Actors',c:'People',s:'Above-the-line',grp:'above',ord:14,p:['principal'],d:'The performers who appear on screen. "Above-the-line" refers specifically to the named, contracted lead actors whose salaries are budgeted separately.',ex:'The ensemble cast of Robert Altman\'s Nashville (1975) featured 24 principal characters — a deliberate structural challenge to the conventional star vehicle.'},
+// ── PEOPLE: BELOW-THE-LINE ──
+{t:'Director of Photography (D.O.P. / Cinematographer)',c:'People',s:'Below-the-line',grp:'below-camera',ord:20,p:['pre','principal'],d:'The head of the camera and lighting departments; responsible for the overall visual look of the film.',ex:'Roger Deakins\'s work on Blade Runner 2049 won the Academy Award for Best Cinematography; his collaboration with the Coen Brothers spans decades.'},
+{t:'Gaffer (Chief Lighting Technician)',c:'People',s:'Below-the-line',grp:'below-camera',ord:21,p:['principal'],d:'The head of the electrical department on set; responsible for designing and executing the lighting plan in close collaboration with the Director of Photography.',ex:'On large productions, the Gaffer manages a team of lighting crew who must rapidly relight sets between takes and between set-ups.'},
+{t:'Best Boy',c:'People',s:'Below-the-line',grp:'below-camera',ord:22,p:['principal'],d:'The assistant to the Gaffer (Best Boy Electric) or the Key Grip (Best Boy Grip). Acts as the department foreman, organising crew, equipment, and daily logistics.',ex:'Despite the unusual name, "Best Boy" is a standard industry credit visible in the end titles of virtually every major film.'},
+{t:'Boom Operator',c:'People',s:'Below-the-line',grp:'below-camera',ord:23,p:['principal'],d:'Operates the boom microphone — a directional microphone on a long pole — to capture clear dialogue on set without the pole appearing in frame.',ex:'Getting the boom as close as possible to the actors while staying outside the frame is a constant challenge, particularly in wide or moving shots.'},
+{t:'Production Designer',c:'People',s:'Below-the-line',grp:'below-design',ord:30,p:['pre','principal'],d:'Responsible for the overall visual environment of the film: sets, locations, props, and the look of the world the characters inhabit. The head of the art department.',ex:'Ken Adam\'s production design for Dr. No and Goldfinger defined the visual language of the Bond franchise and influenced action cinema for decades.'},
+{t:'Art Director',c:'People',s:'Below-the-line',grp:'below-design',ord:31,p:['pre','principal'],d:'Designs and oversees the construction of sets and the execution of costumes. Works under the Production Designer to realise the visual environment of the film.',ex:'The art direction of Metropolis (1927) remains one of cinema\'s most influential and imitated visual designs.'},
+{t:'Costume Designer',c:'People',s:'Below-the-line',grp:'below-design',ord:32,p:['pre','principal'],d:'Designs and oversees all clothing and accessories worn by the cast, using costume to establish character, period, status, and emotional state.',ex:'Colleen Atwood\'s costumes for Chicago defined each character visually — Velma\'s black sequins versus Roxie\'s innocent white communicate their personalities before a word is spoken.'},
+{t:'Film Editor',c:'People',s:'Below-the-line',grp:'below-post',ord:40,p:['post'],d:'Assembles the raw footage into the finished film, shaping rhythm, pace, structure, and meaning in collaboration with the director.',ex:'Thelma Schoonmaker\'s long collaboration with Scorsese — editing Raging Bull, Goodfellas, and The Departed — is one of the great director–editor partnerships in cinema.'},
+{t:'Sound Designer',c:'People',s:'Below-the-line',grp:'below-post',ord:41,p:['post'],d:'Oversees all aspects of a film\'s audio in post-production: sound editing, Foley, ADR, music mixing, and the final sound mix.',ex:'Ben Burtt created the sound design for Star Wars, inventing iconic sounds — including R2-D2\'s voice and the lightsaber — from unlikely everyday sources.'},
+{t:'Foley Artist',c:'People',s:'Below-the-line',grp:'below-post',ord:42,p:['post'],d:'Creates sound effects in a Foley studio during post-production by performing physical sounds in sync with the projected image.',ex:'Foley artists on war films listen carefully to period weapons, vehicles, and equipment to ensure that nothing sounds anachronistically modern.'},
+{t:'Composer (Film Score)',c:'People',s:'Below-the-line',grp:'below-post',ord:43,p:['post'],d:'Writes the original music composed specifically for the film. Works closely with the director to time music precisely to the edit, scoring the emotional arc of scenes.',ex:'Ennio Morricone\'s score for The Good, the Bad and the Ugly is inseparable from Leone\'s imagery — the music defines the film\'s entire emotional register.'},
+
+// ── PRODUCTION ──
+{t:'Animation',c:'Production',s:'',grp:'visual-fx',ord:10,p:['pre','principal'],d:'The process of assembling drawings, digital images, or physical objects photographed one frame at a time to create the illusion of movement.',ex:'Spirited Away (dir. Hayao Miyazaki, 2001) demonstrates traditional hand-drawn animation at its peak, with every frame a meticulously composed image.'},
+{t:'CGI (Computer-Generated Imagery)',c:'Production',s:'',grp:'visual-fx',ord:11,p:['post'],d:'Digitally created visual effects produced on computers in post-production. Can range from invisible corrections to fully computer-generated environments and creatures.',ex:'Jurassic Park (1993) was a landmark: the first time photo-realistic dinosaurs convinced a mass audience.'},
+{t:'Special effects (practical SFX)',c:'Production',s:'',grp:'visual-fx',ord:12,p:['principal'],d:'Illusions created on set during filming using physical means: pyrotechnics, miniature models, prosthetic make-up, and trick photography. Distinct from CGI.',ex:'Mad Max: Fury Road used real vehicles, real fire, and real stunts — its commitment to practical SFX set it apart from contemporary action films.'},
+{t:'Morphing',c:'Production',s:'',grp:'visual-fx',ord:13,p:['post'],d:'A digital post-production technique that seamlessly transforms one image into another through computer animation.',ex:'Michael Jackson\'s Black or White music video (dir. John Landis, 1991) brought morphing to mass audiences.'},
+{t:'Take',c:'Production',s:'',grp:'prod-process',ord:20,p:['principal'],d:'One attempt at a shot. Multiple takes may be filmed; the director selects the best during editing.',ex:'The ballroom scene in The Shining reportedly required over 100 takes — a process Kubrick used to produce the hollow, distressed performances he wanted.'},
+{t:'Shooting / The shoot',c:'Production',s:'',grp:'prod-process',ord:21,p:['principal'],d:'The period of time during which filming takes place: "principal photography." The shoot ends when all scenes have been filmed and editing can begin.',ex:'The shoot for Apocalypse Now ran for over a year in the Philippine jungle, far exceeding its planned schedule.'},
+{t:'Credits',c:'Production',s:'',grp:'prod-process',ord:22,p:['post'],d:'"Head credits" appear at the beginning of a film; "end credits" at the end, listing every cast and crew member involved in the production.',ex:'Marvel films are famous for post-credits scenes that tease future instalments — transforming the credits themselves into a narrative device.'},
+{t:'Still',c:'Production',s:'',grp:'prod-process',ord:23,p:['principal'],d:'A single photograph taken on set by a unit photographer, or the enlargement of one frame from the film. Used for promotional material and continuity reference.',ex:'The still of Audrey Hepburn as Holly Golightly in Breakfast at Tiffany\'s is one of cinema\'s most reproduced promotional images.'},
+{t:'Continuity',c:'Production',s:'',grp:'prod-process',ord:24,p:['principal'],d:'The consistency of details — costume, props, lighting, performance — across multiple takes and set-ups that will be edited together. Maintained by the script supervisor.',ex:'A continuity error — a glass moved between shots, or a wound that appears and disappears — is often only noticed on repeat viewing.'},
+];
+
+// ── FILTER STATE ──
+let fCat='all',fSub='all',fPhase='all',fQ='';
+
+function phaseLabel(p){return p==='pre'?'Pre-production':p==='principal'?'Principal Photography':'Post-production'}
+function phaseBadgeClass(p){return p==='pre'?'badge-pre':p==='principal'?'badge-principal':'badge-post'}
+
+function renderCard(e){
+  const phases=e.p.map(p=>`<span class="badge ${phaseBadgeClass(p)}">${phaseLabel(p)}</span>`).join('');
+  const subBadge=e.s?`<span class="badge badge-sub">${e.s}</span>`:'';
+  const ex=e.ex?`<div class="gex">${e.ex}</div>`:'';
+  const card=`<div class="ge">
+    <div class="gt">${e.t}</div>
+    <div class="ge-badges"><span class="badge badge-cat">${e.c}</span>${subBadge}${phases}</div>
+    <div class="gd">${e.d}</div>${ex}
+  </div>`;
+  const slotId='img-'+e.t.replace(/\W+/g,'_');
+  const imgSlot=`<div class="ge-img-slot" id="${slotId}" onclick="triggerUpload('${slotId}')">
+    <div class="ge-img-slot-inner" id="${slotId}-inner">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".35"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <span>Click to upload image</span>
+    </div>
+    <input type="file" accept="image/*" onchange="loadImg(event,'${slotId}')" onclick="event.stopPropagation()">
+  </div>`;
+  return `<div class="ge-row">${card}${imgSlot}</div>`;
+}
+
+function render(){
+  const res=filtered();
+  const container=document.getElementById('ggrid');
+  document.getElementById('gcount').textContent=`Showing ${res.length} of ${G.length} terms`;
+  if(!res.length){container.innerHTML='<p style="color:var(--muted);font-size:.84rem;padding:20px 0">No terms match your current filters.</p>';return}
+
+  const catOrder=['Cinematography','Sound','Editing','Narrative','People','Production'];
+  res.sort((a,b)=>{
+    const ca=catOrder.indexOf(a.c),cb=catOrder.indexOf(b.c);
+    if(ca!==cb)return ca-cb;
+    return (a.ord||0)-(b.ord||0);
+  });
+
+  const groups=[];
+  let curKey=null,curGroup=null;
+  for(const t of res){
+    const k=t.c+'::'+t.grp;
+    if(k!==curKey){curKey=k;curGroup={cat:t.c,grp:t.grp,terms:[]};groups.push(curGroup)}
+    curGroup.terms.push(t);
+  }
+
+  let html='';
+  let lastCat=null;
+  for(const g of groups){
+    if(fCat==='all'&&g.cat!==lastCat){
+      html+=`<div class="gcat-header">${g.cat}</div>`;
+      lastCat=g.cat;
+    }
+    const label=groupMeta[g.grp];
+    if(fCat!=='all'&&label) html+=`<div class="ggroup-label">${label}</div>`;
+    html+=`<div style="display:flex;flex-direction:column;gap:12px">${g.terms.map(renderCard).join('')}</div>`;
+    html+=`<div class="ggroup-gap"></div>`;
+  }
+  container.innerHTML=html;
+}
+
+function filtered(){
+  return G.filter(e=>{
+    const mC=fCat==='all'||e.c===fCat;
+    const mS=fSub==='all'||e.s===fSub;
+    const mP=fPhase==='all'||e.p.includes(fPhase);
+    const q=fQ.toLowerCase();
+    const mQ=!q||e.t.toLowerCase().includes(q)||e.d.toLowerCase().includes(q)||(e.ex&&e.ex.toLowerCase().includes(q));
+    return mC&&mS&&mP&&mQ;
+  });
+}
+
+function render(){
+  const res=filtered();
+  const container=document.getElementById('ggrid');
+  document.getElementById('gcount').textContent=`Showing ${res.length} of ${G.length} terms`;
+  if(!res.length){container.innerHTML='<p style="color:var(--muted);font-size:.84rem;padding:20px 0">No terms match your current filters.</p>';return}
+
+  // Sort by category order, then ord within category
+  const catOrder=['Cinematography','Sound','Editing','Narrative','People','Production'];
+  res.sort((a,b)=>{
+    const ca=catOrder.indexOf(a.c),cb=catOrder.indexOf(b.c);
+    if(ca!==cb)return ca-cb;
+    return (a.ord||0)-(b.ord||0);
+  });
+
+  // Build groups
+  const groups=[];
+  let curKey=null,curGroup=null;
+  for(const t of res){
+    const k=t.c+'::'+t.grp;
+    if(k!==curKey){curKey=k;curGroup={cat:t.c,grp:t.grp,terms:[]};groups.push(curGroup)}
+    curGroup.terms.push(t);
+  }
+
+  let html='';
+  let lastCat=null;
+  for(const g of groups){
+    // Category header when All is selected
+    if(fCat==='all'&&g.cat!==lastCat){
+      html+=`<div class="gcat-header">${g.cat}</div>`;
+      lastCat=g.cat;
+    }
+    // Group label when a specific category is selected
+    const label=groupMeta[g.grp];
+    const showLabel=fCat!=='all'&&label;
+    if(showLabel) html+=`<div class="ggroup-label">${label}</div>`;
+    html+=`<div class="ggrid-inner">${g.terms.map(renderCard).join('')}</div>`;
+    html+=`<div class="ggroup-gap"></div>`;
+  }
+  container.innerHTML=html;
+}
+
+function setCat(v,btn){
+  fCat=v;fSub='all';
+  document.querySelectorAll('#cat-row .gfbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const sr=document.getElementById('subcat-row');
+  const subs=subcatMap[v];
+  if(subs){
+    sr.innerHTML=`<button class="gfbtn on" onclick="setSub('all',this)">All</button>`+subs.map(s=>`<button class="gfbtn" onclick="setSub('${s}',this)">${s}</button>`).join('');
+    sr.style.display='flex';
+  } else {sr.style.display='none';sr.innerHTML='';}
+  render();
+}
+function setSub(v,btn){
+  fSub=v;
+  document.querySelectorAll('#subcat-row .gfbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');render();
+}
+function setPhase(v,btn){
+  fPhase=v;
+  document.querySelectorAll('.phase-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');renderPhaseVideo(v);render();
+}
+function doSearch(v){fQ=v;render();}
+
+// ── MATCHING ──
+const matchData=[
+  {term:'Diegetic sound',def:'Sound that comes from within the film world — characters can hear it'},
+  {term:'Mise-en-scène',def:'Everything arranged within the frame: setting, costume, lighting, performance'},
+  {term:'Montage',def:'A fast-cut sequence combining many shots to compress time or create mood'},
+  {term:'Dutch angle',def:'A tilted frame suggesting psychological unease or moral instability'},
+  {term:'Dénouement',def:'The final resolution — the tying-up of loose ends after the climax'},
+  {term:'MacGuffin',def:'An object that motivates characters but has little real importance of its own'},
+  {term:'Foley effects',def:'Sound effects created in a studio after filming to match on-screen action'},
+  {term:'Shallow focus',def:'Only one plane is sharp; background is blurred to direct the viewer\'s attention'},
+];
+let dragged=null;
+function buildMatch(){
+  const dc=document.getElementById('drag-col'),dr=document.getElementById('drop-col');
+  document.getElementById('fb-match').className='fb';
+  dc.innerHTML=matchData.map(d=>`<div class="drag-item" draggable="true" data-term="${d.term}" ondragstart="dStart(event)" ondragend="dEnd(event)">${d.term}</div>`).join('');
+  const sh=[...matchData].sort(()=>Math.random()-.5);
+  dr.innerHTML=sh.map(d=>`<div class="drop-z" data-key="${d.term}" ondragover="dOver(event)" ondragleave="dLeave(event)" ondrop="dDrop(event)">${d.def}</div>`).join('');
+}
+function dStart(e){dragged=e.target;e.target.classList.add('dragging')}
+function dEnd(e){e.target.classList.remove('dragging')}
+function dOver(e){e.preventDefault();e.currentTarget.classList.add('over')}
+function dLeave(e){e.currentTarget.classList.remove('over')}
+function dDrop(e){
+  e.preventDefault();const z=e.currentTarget;z.classList.remove('over');
+  if(!dragged)return;
+  const orig=matchData.find(d=>d.term===z.dataset.key).def;
+  z.dataset.placed=dragged.dataset.term;
+  z.innerHTML=`<strong style="color:var(--accent);font-size:.82rem">${dragged.dataset.term}</strong><br><span style="font-size:.77rem;color:var(--muted)">${orig}</span>`;
+  z.classList.add('placed');dragged.style.opacity='.35';dragged.setAttribute('draggable','false');dragged=null;
+}
+function checkMatch(){
+  const zones=document.querySelectorAll('.drop-z');let ok=0;
+  zones.forEach(z=>{if(z.dataset.placed===z.dataset.key)ok++});
+  const fb=document.getElementById('fb-match');
+  if(ok===matchData.length){fb.textContent=`All ${ok} correct — excellent work!`;fb.className='fb ok'}
+  else{fb.textContent=`${ok} of ${matchData.length} correct. Try again!`;fb.className='fb no'}
+}
+
+function triggerUpload(slotId){
+  const slot=document.getElementById(slotId);
+  if(slot)slot.querySelector('input[type=file]').click();
+}
+async function loadImg(event,slotId){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async function(e){
+    const dataUrl=e.target.result;
+    setImgSlot(slotId,dataUrl,file.name);
+    try{await window.storage.set('img:'+slotId,JSON.stringify({src:dataUrl,name:file.name}));}
+    catch(err){console.warn('Storage save failed',err);}
+  };
+  reader.readAsDataURL(file);
+}
+
+function setImgSlot(slotId,src,name){
+  const slot=document.getElementById(slotId);
+  if(!slot)return;
+  const inner=document.getElementById(slotId+'-inner');
+  if(inner)inner.style.display='none';
+  const old=slot.querySelector('img');if(old)old.remove();
+  const oldLbl=slot.querySelector('.img-label');if(oldLbl)oldLbl.remove();
+  const img=document.createElement('img');img.src=src;img.alt='';
+  const lbl=document.createElement('div');lbl.className='img-label';lbl.textContent=name;
+  slot.appendChild(img);slot.appendChild(lbl);
+}
+
+async function restoreImages(){
+  try{
+    const keys=await window.storage.list('img:');
+    if(!keys||!keys.keys)return;
+    for(const key of keys.keys){
+      try{
+        const result=await window.storage.get(key);
+        if(!result)continue;
+        const data=JSON.parse(result.value);
+        const slotId=key.replace('img:','');
+        // Slot may not exist yet if render hasn't run — retry after render
+        if(document.getElementById(slotId)){setImgSlot(slotId,data.src,data.name);}
+        else{pendingImages[slotId]=data;}
+      }catch(e){console.warn('Failed to restore',key,e);}
+    }
+  }catch(e){console.warn('Storage list failed',e);}
+}
+
+const pendingImages={};
+
+const _origRender=render;
+render=function(){
+  _origRender();
+  // After render, apply any pending images that weren't in the DOM yet
+  for(const [slotId,data] of Object.entries(pendingImages)){
+    if(document.getElementById(slotId)){
+      setImgSlot(slotId,data.src,data.name);
+      delete pendingImages[slotId];
+    }
+  }
+  // Also re-apply already-known stored images to freshly rendered slots
+  for(const key of Object.keys(window._storedImgs||{})){
+    const slotId=key;
+    const data=window._storedImgs[key];
+    if(document.getElementById(slotId))setImgSlot(slotId,data.src,data.name);
+  }
+};
+
+// Cache stored images so re-renders can reapply them
+window._storedImgs={};
+async function initStorage(){
+  try{
+    const keys=await window.storage.list('img:');
+    if(!keys||!keys.keys)return;
+    for(const key of keys.keys){
+      try{
+        const result=await window.storage.get(key);
+        if(!result)continue;
+        const data=JSON.parse(result.value);
+        const slotId=key.replace('img:','');
+        window._storedImgs[slotId]=data;
+        if(document.getElementById(slotId))setImgSlot(slotId,data.src,data.name);
+        else pendingImages[slotId]=data;
+      }catch(e){}
+    }
+  }catch(e){console.warn('initStorage failed',e);}
+}
+
+// ── ANALYSIS NAV ──
+function showAnaSec(id){
+  ['ana-home','ana-io2','ana-english','ana-film'].forEach(s=>{
+    const el=document.getElementById(s);
+    if(el)el.style.display=s===id?'block':'none';
+  });
+  if(id==='ana-film')showFilmTopic('home');
+}
+function backToAnaHome(){showAnaSec('ana-home');}
+function showFilmTopic(which){
+  document.getElementById('ana-film-home').style.display=which==='home'?'block':'none';
+  document.getElementById('ana-film-topic2').style.display=which==='topic2'?'block':'none';
+  if(which==='topic2')initCarousel();
+}
+
+// ── CAROUSEL ──
+let carIdx=1;
+const carTotal=20;
+function initCarousel(){carIdx=1;updateCar();}
+function moveCar(dir){
+  carIdx=Math.min(Math.max(carIdx+dir,1),carTotal);updateCar();
+}
+function updateCar(){
+  document.querySelectorAll('.cslide-inner').forEach(s=>{
+    s.style.display=parseInt(s.dataset.slide)===carIdx?'flex':'none';
+  });
+  document.getElementById('car-counter').textContent=`Slide ${carIdx} of ${carTotal}`;
+  document.getElementById('car-bar').style.width=`${(carIdx/carTotal)*100}%`;
+  document.getElementById('car-prev').disabled=carIdx===1;
+  document.getElementById('car-next').disabled=carIdx===carTotal;
+}
+</script>
+</body>
+</html>
