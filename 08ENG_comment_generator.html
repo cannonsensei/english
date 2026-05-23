@@ -224,7 +224,14 @@ body{font-family:var(--font);background:var(--surface);color:var(--ink);min-heig
             <div class="top-grid" style="margin-bottom:.75rem">
               <div class="field"><label>Student name</label><input type="text" id="e-studentName" placeholder="e.g. Megan" oninput="updatePreview()"></div>
               <div class="field"><label>Topic</label><input type="text" id="e-filmTitle" placeholder="e.g. identity and belonging" oninput="updatePreview()"></div>
-              <div class="field"><label>Film / text</label><input type="text" id="e-filmName" placeholder="e.g. Inside Out 2" oninput="updatePreview()"></div>
+              <div class="field">
+                <label>Text type</label>
+                <select id="e-textType" onchange="onTextTypeChange()">
+                  <option value="film">Film</option>
+                  <option value="novel">Novel / written text</option>
+                </select>
+              </div>
+              <div class="field"><label>Film / text title</label><input type="text" id="e-filmName" placeholder="e.g. Inside Out 2" oninput="updatePreview()"></div>
             </div>
             <div class="field">
               <label>Paste marks <span style="font-weight:500;text-transform:none;letter-spacing:0">(CSV or space-separated — 9 values: KA1–3, OD1–3, LF1–3)</span></label>
@@ -601,8 +608,20 @@ body{font-family:var(--font);background:var(--surface);color:var(--ink);min-heig
               <div class="tag-column">
                 <div id="e-tags-vis-ka3" style="display:none">
                   <div class="tag-label">Features analysed:</div>
-                  <div class="tag-area" id="e-tags-ka3-feat">
-                    <span class="tag" onclick="toggleTag(this)">camera angles</span><span class="tag" onclick="toggleTag(this)">lighting</span><span class="tag" onclick="toggleTag(this)">colour</span><span class="tag" onclick="toggleTag(this)">dialogue</span><span class="tag" onclick="toggleTag(this)">symbolism</span><span class="tag" onclick="toggleTag(this)">music</span><span class="tag" onclick="toggleTag(this)">character design</span><span class="tag" onclick="toggleTag(this)">mise en scène</span><span class="tag" onclick="toggleTag(this)">editing</span><span class="tag" onclick="toggleTag(this)">voice-over</span><span class="tag" onclick="toggleTag(this)">diegetic sound</span><span class="tag" onclick="toggleTag(this)">non-diegetic sound</span>
+                  <!-- Film features -->
+                  <div id="e-tags-ka3-film" style="display:block">
+                    <div class="tag-area" id="e-tags-ka3-feat">
+                      <span class="tag" onclick="toggleTag(this)">cinematography</span><span class="tag" onclick="toggleTag(this)">angles</span><span class="tag" onclick="toggleTag(this)">shots</span><span class="tag" onclick="toggleTag(this)">movement</span><span class="tag" onclick="toggleTag(this)">editing</span><span class="tag" onclick="toggleTag(this)">lighting</span><span class="tag" onclick="toggleTag(this)">music</span><span class="tag" onclick="toggleTag(this)">diegetic sound</span><span class="tag" onclick="toggleTag(this)">non-diegetic sound</span><span class="tag" onclick="toggleTag(this)">dialogue</span><span class="tag" onclick="toggleTag(this)">mise en scène</span><span class="tag" onclick="toggleTag(this)">character design</span>
+                    </div>
+                    <div class="tag-area" style="margin-top:.35rem" id="e-tags-ka3-feat-literary-film">
+                      <span class="tag" onclick="toggleTag(this)">allegory</span><span class="tag" onclick="toggleTag(this)">allusion</span><span class="tag" onclick="toggleTag(this)">imagery</span><span class="tag" onclick="toggleTag(this)">irony</span><span class="tag" onclick="toggleTag(this)">metaphor</span><span class="tag" onclick="toggleTag(this)">motif</span><span class="tag" onclick="toggleTag(this)">personification</span><span class="tag" onclick="toggleTag(this)">symbolism</span>
+                    </div>
+                  </div>
+                  <!-- Novel features -->
+                  <div id="e-tags-ka3-novel" style="display:none">
+                    <div class="tag-area" id="e-tags-ka3-feat-novel">
+                      <span class="tag" onclick="toggleTag(this)">allegory</span><span class="tag" onclick="toggleTag(this)">allusion</span><span class="tag" onclick="toggleTag(this)">imagery</span><span class="tag" onclick="toggleTag(this)">irony</span><span class="tag" onclick="toggleTag(this)">metaphor</span><span class="tag" onclick="toggleTag(this)">motif</span><span class="tag" onclick="toggleTag(this)">personification</span><span class="tag" onclick="toggleTag(this)">symbolism</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1240,6 +1259,20 @@ function getPhrase(phrases,key,grade,token,tokenVal){const arr=phrases[key]&&phr
 // ═══════════════════════════════════════════════════════════════════════
 // MODE SWITCH
 // ═══════════════════════════════════════════════════════════════════════
+function onTextTypeChange(){
+  const type=document.getElementById('e-textType')?.value||'film';
+  document.getElementById('e-tags-ka3-film').style.display=type==='film'?'block':'none';
+  document.getElementById('e-tags-ka3-novel').style.display=type==='novel'?'block':'none';
+  // Clear any selected tags from the hidden set
+  const hideId=type==='film'?'e-tags-ka3-feat-novel':'e-tags-ka3-feat';
+  const hideId2=type==='film'?null:'e-tags-ka3-feat-literary-film';
+  [hideId,hideId2].forEach(id=>{if(id)document.querySelectorAll('#'+id+' .tag.selected').forEach(t=>t.classList.remove('selected'));});
+  // Update film/text label placeholder
+  const input=document.getElementById('e-filmName');
+  if(input)input.placeholder=type==='film'?'e.g. Inside Out 2':'e.g. The Curious Incident of the Dog in the Night-Time';
+  updatePreview();
+}
+
 function onTaskTypeChange(){
   const val=document.getElementById('taskTypeSelect').value;
   if(!val){
@@ -1649,7 +1682,10 @@ function buildEssayPreview(){
   }
   if(inc('ka2')||inc('ka3')){
     const ctxTags=selTags('e-tags-ka2-ctx');
-    const featTags=selTags('e-tags-ka3-feat');
+    const textType=document.getElementById('e-textType')?.value||'film';
+    const featTags=textType==='novel'
+      ? selTags('e-tags-ka3-feat-novel')
+      : [...selTags('e-tags-ka3-feat'), ...selTags('e-tags-ka3-feat-literary-film')];
     const ctxStr=ctxTags.length>0?'the '+joinAnd(ctxTags)+' experience of '+topic:'the experience of '+topic;
     const featStr=featTags.length>0?joinAnd(featTags):'aesthetic features and stylistic devices';
     if(inc('ka2')&&inc('ka3')){
@@ -1860,7 +1896,7 @@ function clearAll(){
     document.querySelectorAll('input[name="n-imp"]:checked,input[name="n-ext"]:checked').forEach(cb=>cb.checked=false);
     document.querySelectorAll('#criteria-narrative .tag.selected').forEach(t=>t.classList.remove('selected'));
   } else if(currentMode==='essay'){
-    document.getElementById('e-studentName').value='';document.getElementById('e-filmTitle').value='';document.getElementById('e-filmName').value='';
+    document.getElementById('e-studentName').value='';document.getElementById('e-filmTitle').value='';document.getElementById('e-filmName').value='';document.getElementById('e-textType').value='film';onTextTypeChange();
     document.getElementById('e-pasteZone').value='';document.getElementById('e-parseStatus').textContent='';
     ['e-ka1','e-ka2','e-ka3','e-od1','e-od2','e-od3','e-lf1','e-lf2','e-lf3'].forEach(id=>{document.getElementById(id).value='';});
     document.querySelectorAll('input[name="e-imp"]:checked,input[name="e-ext"]:checked').forEach(cb=>cb.checked=false);
