@@ -1189,7 +1189,7 @@ const E_DEFAULT_PHRASES={
   },
   ka1:{
     A:["In particular, you demonstrated [ARTICLE_ADJ] [ANALYSIS_ADJ] analysis of how [TOPIC] is represented in [FILM]."],
-    B:["Your essay demonstrated [ARTICLE_ADJ] [ANALYSIS_ADJ] analysis of how [TOPIC] is represented in [FILM]."],
+    B:["It demonstrated [ARTICLE_ADJ] [ANALYSIS_ADJ] analysis of how [TOPIC] is represented in [FILM].","Your work demonstrated [ARTICLE_ADJ] [ANALYSIS_ADJ] analysis of how [TOPIC] is represented in [FILM]."],
     C:["Your analysis of representations of [TOPIC] in [FILM] was [ANALYSIS_ADJ], with some identification of how meaning is shaped.","You began to analyse how [TOPIC] is represented in [FILM], showing [ARTICLE_ADJ] [ANALYSIS_ADJ] engagement with how meaning is constructed."],
     D:["Your engagement with representations of [TOPIC] in [FILM] was [ANALYSIS_ADJ], with observations present but not yet developed into consistent analysis.","You touched on representations of [TOPIC] in [FILM], though your analysis remained [ANALYSIS_ADJ] and was not yet consistently developed."],
     E:["Your engagement with representations of [TOPIC] in [FILM] was [ANALYSIS_ADJ], with statements made but not yet developed into analytical commentary.","You identified some elements of how [TOPIC] is represented in [FILM], though analysis did not yet move beyond [ANALYSIS_ADJ] observation."]
@@ -1202,18 +1202,18 @@ const E_DEFAULT_PHRASES={
     E:["This was supported through [ARTICLE_ADJ] [EXAM_ADJ] examination of how [REP_TAGS] are used by the director to explore [TOPIC].","You identified [REP_TAGS] in relation to [TOPIC] but did not yet develop your observations into [EXAM_ADJ] analysis."]
   },
   ka23:{
-    A:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."],
-    B:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."],
-    C:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."],
-    D:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."],
-    E:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."]
+    A:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]; this was [SUPPORT_QUAL] in your analysis of [FEAT_STR]."],
+    B:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]; this was [SUPPORT_QUAL] in your analysis of [FEAT_STR]."],
+    C:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]; this was [SUPPORT_QUAL] in your analysis of [FEAT_STR]."],
+    D:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]; this was [SUPPORT_QUAL] in your analysis of [FEAT_STR]."],
+    E:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]; this was [SUPPORT_QUAL] in your analysis of [FEAT_STR]."]
   },
   ka2_only:{
-    A:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."],
-    B:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."],
-    C:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."],
-    D:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."],
-    E:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."]
+    A:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]."],
+    B:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]."],
+    C:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]."],
+    D:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]."],
+    E:["In considering how [TOPIC] is represented to the audience, the directorial choices made in the film were discussed [ADVERB]."]
   },
   ka3_only:{
     A:["Your analysis of [FEAT_STR] demonstrated [ARTICLE_ADJ] [DESC_ADJ] engagement with the aesthetic and stylistic choices made in the film.","You analysed [FEAT_STR] with [DESC_ADJ] precision, examining how these choices are used to construct meaning and position the viewer."],
@@ -1230,10 +1230,10 @@ const E_DEFAULT_PHRASES={
     E:["You used the conventions of the analytical essay form [WITH_QUAL]."]
   },
   od2:{
-    A:["Your selection and substantiation of subject matter was purposeful, with highly relevant evidence chosen to support your ideas."],
-    B:["Your selection and substantiation of subject matter was purposeful, with relevant evidence chosen to support your ideas."],
-    C:["Your selection and substantiation of subject matter was purposeful, with mostly relevant evidence chosen to support your ideas."],
-    D:["Your selection and substantiation of subject matter was purposeful, with variably relevant evidence chosen to support your ideas."],
+    A:["Your selection and substantiation of subject matter was [ADJ], with [REL_QUAL] evidence chosen to support your ideas."],
+    B:["Your selection and substantiation of subject matter was [ADJ], with [REL_QUAL] evidence chosen to support your ideas."],
+    C:["Your selection and substantiation of subject matter was [ADJ], with [REL_QUAL] evidence chosen to support your ideas."],
+    D:["Your selection and substantiation of subject matter was [ADJ], with [REL_QUAL] evidence chosen to support your ideas."],
     E:["Your selection and substantiation of subject matter requires development, with evidence not yet consistently chosen to support your ideas."]
   },
   od3:{
@@ -1747,7 +1747,11 @@ function buildEssayPreview(){
       const adverb=pickAdverb(g2);
       const ka23Raw=kaPh('ka23',g2);
       if(ka23Raw){
-        const plainTokens={NAME:name,TOPIC:topic,FILM:film,CTX_STR:ctxStr,FEAT_STR:featStr,DISCUSS_ADJ:discussAdj,ARTICLE_ADJ:getArticle(discussAdj),ADVERB:adverb};
+        const supportOpts=['well-supported','supported','mostly supported','at times supported'];
+        const supportDefault=g2==='A'?'well-supported':g2==='B'?'supported':g2==='C'?'mostly supported':'at times supported';
+        const supportSelectHtml=`<select class="word-select">${supportOpts.map(w=>`<option${w===supportDefault?' selected':''}>${escHtml(w)}</option>`).join('')}</select>`;
+        const supportSel={bare:supportSelectHtml,withArticle:supportSelectHtml};
+        const plainTokens={NAME:name,TOPIC:topic,FILM:film,CTX_STR:ctxStr,FEAT_STR:featStr,DISCUSS_ADJ:discussAdj,ARTICLE_ADJ:getArticle(discussAdj),ADVERB:adverb,SUPPORT_QUAL:supportDefault};
         const htmlTokens={NAME:escHtml(name),TOPIC:escHtml(topic),FILM:escHtml(film),CTX_STR:escHtml(ctxStr),FEAT_STR:escHtml(featStr)};
         const adverbGradePool=eAdverbs[g2]||eAdverbs['C']||[];
         const adverbList=adverbGradePool.includes(adverb)?adverbGradePool:[adverb,...adverbGradePool].filter(Boolean);
@@ -1755,7 +1759,7 @@ function buildEssayPreview(){
         const adverbSel={bare:adverbSelectHtml,withArticle:adverbSelectHtml};
         pushPart(
           subTokens(ka23Raw,plainTokens),
-          subTokensHTML(ka23Raw,htmlTokens,{DISCUSS_ADJ:kaAdjSelectHTML(discussPair,discussAdj,g2),ADVERB:adverbSel})
+          subTokensHTML(ka23Raw,htmlTokens,{DISCUSS_ADJ:kaAdjSelectHTML(discussPair,discussAdj,g2),ADVERB:adverbSel,SUPPORT_QUAL:supportSel})
         );
       }
     } else if(inc('ka2')){
@@ -1839,7 +1843,7 @@ function buildEssayPreview(){
   }
   const odLines=[];const odHtmlLines=[];
   if(inc('od1')){const raw=ph('od1');if(raw){const ft=selTags('e-tags-od1-feat');const tag=ft.length>0?', particularly in your use of '+joinAnd(ft):'';odLines.push(subPhAdj(raw,grade('od1')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od1')).replace(/\.$/,'')+escHtml(tag)+'.');}}
-  if(inc('od2')){const raw=ph('od2');if(raw){const st=selTags('e-tags-od2-sub');const tag=st.length>0?', particularly in your '+joinAnd(st):'';odLines.push(subPhAdj(raw,grade('od2')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od2')).replace(/\.$/,'')+escHtml(tag)+'.');}}
+  if(inc('od2')){const raw=ph('od2');if(raw){const g2=grade('od2');const st=selTags('e-tags-od2-sub');const tag=st.length>0?', particularly in your '+joinAnd(st):'';const relOpts=['highly relevant','relevant','mostly relevant'];const relDefault=g2==='A'?'highly relevant':g2==='B'?'relevant':'mostly relevant';const relSelectHtml=`<select class="word-select">${relOpts.map(w=>`<option${w===relDefault?' selected':''}>${escHtml(w)}</option>`).join('')}</select>`;odLines.push(subPhAdj(raw,g2).replace(/\[REL_QUAL\]/g,relDefault).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,g2).replace(/\[REL_QUAL\]/g,relSelectHtml).replace(/\.$/,'')+escHtml(tag)+'.');}}
   if(inc('od3')){const raw=ph('od3');if(raw){const st=selTags('e-tags-od3-struct');const tag=st.length>0?', particularly in your '+joinAnd(st):'';odLines.push(subPhAdj(raw,grade('od3')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od3')).replace(/\.$/,'')+escHtml(tag)+'.');}}
   odLines.forEach((s,i)=>pushPart(s,odHtmlLines[i]));
   const lfLines=[];const lfHtmlLines=[];
