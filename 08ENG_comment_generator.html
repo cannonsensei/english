@@ -762,6 +762,39 @@ body{font-family:var(--font);background:var(--surface);color:var(--ink);min-heig
               <span class="section-label">Suggestions for Improvement</span>
             </div>
             <div class="imp-section">
+              <div class="collapsible-header" onclick="toggleCol('e-imp-gf')"><span class="col-title">General Feedback</span><span class="col-arrow" id="arr-e-imp-gf">&#9654;</span></div>
+              <div class="collapsible-body" id="e-imp-gf">
+                <div class="cb-group">
+                  <div class="cb-group-title">Planning and preparation</div>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-plan" data-ikey="e-gf-plan-0"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-plan" data-ikey="e-gf-plan-1"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-plan" data-ikey="e-gf-plan-2"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-plan" data-ikey="e-gf-plan-3"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-plan" data-ikey="e-gf-plan-4"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-plan" data-ikey="e-gf-plan-5"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-plan" data-ikey="e-gf-plan-6"><span class="imp-text"></span></label>
+                </div>
+                <div class="cb-group">
+                  <div class="cb-group-title">Analysis and argument</div>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-analysis" data-ikey="e-gf-analysis-0"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-analysis" data-ikey="e-gf-analysis-1"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-analysis" data-ikey="e-gf-analysis-2"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-analysis" data-ikey="e-gf-analysis-3"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-analysis" data-ikey="e-gf-analysis-4"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-analysis" data-ikey="e-gf-analysis-5"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-analysis" data-ikey="e-gf-analysis-6"><span class="imp-text"></span></label>
+                </div>
+                <div class="cb-group">
+                  <div class="cb-group-title">Expression and editing</div>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-expr" data-ikey="e-gf-expr-0"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-expr" data-ikey="e-gf-expr-1"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-expr" data-ikey="e-gf-expr-2"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-expr" data-ikey="e-gf-expr-3"><span class="imp-text"></span></label>
+                  <label class="cb-item"><input type="checkbox" name="e-imp" data-area="gf" data-group="gf-expr" data-ikey="e-gf-expr-4"><span class="imp-text"></span></label>
+                </div>
+              </div>
+            </div>
+            <div class="imp-section">
               <div class="collapsible-header" onclick="toggleCol('e-imp-ka')"><span class="col-title">Knowledge Application</span><span class="col-arrow" id="arr-e-imp-ka">&#9654;</span></div>
               <div class="collapsible-body" id="e-imp-ka">
                 <div class="cb-group">
@@ -920,8 +953,8 @@ body{font-family:var(--font);background:var(--surface);color:var(--ink);min-heig
 const SK={
   n_phrases:'yr8_n_phrases_v2', n_adjs:'yr8_n_adjs_v1', n_btn:'yr8_n_btn_v1',
   n_imp:'yr8_n_imp_v2', n_ext:'yr8_n_ext_v2',
-  e_phrases:'yr8_e_phrases_v5', e_adjs:'yr8_e_adjs_v2',
-  e_adverbs:'yr8_e_adverbs_v1', e_quals:'yr8_e_quals_v1', e_imp:'yr8_e_imp_v1', e_ext:'yr8_e_ext_v1'
+  e_phrases:'yr8_e_phrases_v5', e_adjs:'yr8_e_adjs_v3',
+  e_adverbs:'yr8_e_adverbs_v2', e_quals:'yr8_e_quals_v2', e_imp:'yr8_e_imp_v2', e_ext:'yr8_e_ext_v1'
 };
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -1118,7 +1151,26 @@ const E_DEFAULT_IMP={
   'e-lf-punct-0':'use commas correctly in complex sentences to support the clarity of your writing',
   'e-lf-punct-1':'use colons and semicolons to develop and connect analytical ideas more precisely',
   'e-lf-punct-2':'attend to lapses in punctuation control that affected the fluency of your writing',
-  'e-lf-punct-3':'proofread carefully for spelling errors, particularly with analytical and subject-specific terminology'
+  'e-lf-punct-3':'proofread carefully for spelling errors, particularly with analytical and subject-specific terminology',
+  'e-gf-plan-0':'ensure you are familiar with the text before you begin drafting your response',
+  'e-gf-plan-1':'re-watch the scenes you selected multiple times so that your analysis has the depth and detail your argument requires',
+  'e-gf-plan-2':'revisit the models and exemplars provided in class to strengthen your understanding of the expected structure and style',
+  'e-gf-plan-3':'revisit your class discussion notes, as ideas raised during those sessions often provide strong starting points for analysis',
+  'e-gf-plan-4':'use the planning template to map out the argument each body paragraph will make before you begin drafting',
+  'e-gf-plan-5':'spend time annotating your evidence before you write; knowing exactly what you want to say about a scene will help you avoid vague or surface-level analysis',
+  'e-gf-plan-6':'make better use of class drafting time by asking questions and actively working on your response during those sessions',
+  'e-gf-analysis-0':'practise identifying the difference between describing what happens in a scene and analysing why the director has made that choice; strong analytical essays focus on the latter',
+  'e-gf-analysis-1':'push your analysis further by asking yourself what the director wants the audience to think or feel at that moment, and why',
+  'e-gf-analysis-2':'focus on explaining the effect of the techniques you identify, not just naming them; the "so what" is where most of the analytical marks are earned',
+  'e-gf-analysis-3':'develop your use of film terminology so that your analysis is precise and demonstrates understanding of how meaning is constructed',
+  'e-gf-analysis-4':'select evidence that directly supports the point you are making; choosing precise, relevant evidence will significantly strengthen your argument',
+  'e-gf-analysis-5':'review the analytical essay structure covered in class and ensure each paragraph has a clear topic sentence, supporting evidence, and a linking statement',
+  'e-gf-analysis-6':'reread your introduction and conclusion together before submitting to check that your overall argument is clear and consistent across both',
+  'e-gf-expr-0':'print out and read your essay aloud to check whether your ideas flow logically from sentence to sentence; if something sounds unclear to you, it will likely be unclear to your reader',
+  'e-gf-expr-1':'set your essay aside for a day before editing; distance helps you notice gaps in reasoning that are easy to miss straight after writing',
+  'e-gf-expr-2':'read each sentence and ask whether it could be cut or simplified without losing meaning; concise writing is more persuasive',
+  'e-gf-expr-3':'check that you are writing in the present tense when analysing texts (e.g., "Riley prioritises acceptance over her existing friends")',
+  'e-gf-expr-4':'vary the way you introduce evidence so as not to rely on the same phrase throughout your essay'
 };
 const E_DEFAULT_EXT={
   'e-ext-0':'develop your analytical voice by experimenting with more precise and nuanced metalanguage to describe the effect of aesthetic features and stylistic devices',
@@ -1137,7 +1189,7 @@ const E_DEFAULT_PHRASES={
   },
   ka1:{
     A:["In particular, you demonstrated [ARTICLE_ADJ] [ANALYSIS_ADJ] analysis of how [TOPIC] is represented in [FILM]."],
-    B:["In particular, you demonstrated [ARTICLE_ADJ] [ANALYSIS_ADJ] analysis of how [TOPIC] is represented in [FILM]."],
+    B:["Your essay demonstrated [ARTICLE_ADJ] [ANALYSIS_ADJ] analysis of how [TOPIC] is represented in [FILM]."],
     C:["Your analysis of representations of [TOPIC] in [FILM] was [ANALYSIS_ADJ], with some identification of how meaning is shaped.","You began to analyse how [TOPIC] is represented in [FILM], showing [ARTICLE_ADJ] [ANALYSIS_ADJ] engagement with how meaning is constructed."],
     D:["Your engagement with representations of [TOPIC] in [FILM] was [ANALYSIS_ADJ], with observations present but not yet developed into consistent analysis.","You touched on representations of [TOPIC] in [FILM], though your analysis remained [ANALYSIS_ADJ] and was not yet consistently developed."],
     E:["Your engagement with representations of [TOPIC] in [FILM] was [ANALYSIS_ADJ], with statements made but not yet developed into analytical commentary.","You identified some elements of how [TOPIC] is represented in [FILM], though analysis did not yet move beyond [ANALYSIS_ADJ] observation."]
@@ -1150,18 +1202,18 @@ const E_DEFAULT_PHRASES={
     E:["This was supported through [ARTICLE_ADJ] [EXAM_ADJ] examination of how [REP_TAGS] are used by the director to explore [TOPIC].","You identified [REP_TAGS] in relation to [TOPIC] but did not yet develop your observations into [EXAM_ADJ] analysis."]
   },
   ka23:{
-    A:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film; this was supported in your analysis of [FEAT_STR] [ADVERB].","In exploring how the film reflects [CTX_STR], you demonstrated [ARTICLE_ADJ] [DISCUSS_ADJ] analysis of the directorial choices at work; this was evident in your [DISCUSS_ADJ] discussion of [FEAT_STR]."],
-    B:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film; this was supported in your analysis of [FEAT_STR] [ADVERB].","In exploring how the film reflects [CTX_STR], you showed [ARTICLE_ADJ] [DISCUSS_ADJ] engagement with directorial choices; this was supported by your analysis of [FEAT_STR]."],
-    C:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film; this required further development in your analysis of [FEAT_STR].","In exploring how the film reflects [CTX_STR], you showed [ARTICLE_ADJ] [DISCUSS_ADJ] awareness of directorial choices; further development was needed in your analysis of [FEAT_STR]."],
-    D:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film; this required further development in your analysis of [FEAT_STR].","In approaching how the film reflects [CTX_STR], your discussion of directorial choices was [DISCUSS_ADJ]; your analysis of [FEAT_STR] also required more sustained development."],
-    E:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film; this required further development in your analysis of [FEAT_STR].","Your discussion of how the film responds to [CTX_STR] was [DISCUSS_ADJ], and your engagement with [FEAT_STR] did not yet move beyond identification into analysis."]
+    A:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."],
+    B:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."],
+    C:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."],
+    D:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."],
+    E:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]; this was supported in your analysis of [FEAT_STR]."]
   },
   ka2_only:{
-    A:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film.","In exploring how the film reflects [CTX_STR], you demonstrated [ARTICLE_ADJ] [DISCUSS_ADJ] analysis of the significance of directorial choices."],
-    B:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film.","In exploring how the film reflects [CTX_STR], you showed [ARTICLE_ADJ] [DISCUSS_ADJ] engagement with how directorial choices shape meaning."],
-    C:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film.","In engaging with how the film reflects [CTX_STR], your discussion of directorial choices was [DISCUSS_ADJ], with some connections made but not always sustained."],
-    D:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film.","In approaching how the film reflects [CTX_STR], your discussion of directorial choices was [DISCUSS_ADJ] and did not yet develop into consistent analysis."],
-    E:["In considering how the film responds to [CTX_STR], you provided [ARTICLE_ADJ] [DISCUSS_ADJ] discussion of the directorial choices made in the film.","Your engagement with how the film reflects [CTX_STR] was [DISCUSS_ADJ], with observations made but not yet developed into analytical commentary."]
+    A:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."],
+    B:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."],
+    C:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."],
+    D:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."],
+    E:["In considering how [FILM] represents [TOPIC] to the audience, the directorial choices made in the film were discussed [ADVERB]."]
   },
   ka3_only:{
     A:["Your analysis of [FEAT_STR] demonstrated [ARTICLE_ADJ] [DESC_ADJ] engagement with the aesthetic and stylistic choices made in the film.","You analysed [FEAT_STR] with [DESC_ADJ] precision, examining how these choices are used to construct meaning and position the viewer."],
@@ -1171,18 +1223,18 @@ const E_DEFAULT_PHRASES={
     E:["Your analysis of [FEAT_STR] demonstrated [ARTICLE_ADJ] [DESC_ADJ] engagement with the aesthetic and stylistic choices made in the film.","You identified some elements of [FEAT_STR] but did not yet develop your observations into analytical commentary."]
   },
   od1:{
-    A:["Your use of the generic features of the analytical essay was [ADJ], with conventions employed with clear intention and control throughout.","In structuring your essay, you demonstrated [ARTICLE_ADJ] [ADJ] command of the genre, with each structural element employed with intention and effect.","You handled the conventions of the analytical essay form [ADVERB], using genre features purposefully to develop and communicate your ideas."],
-    B:["Your use of the generic features of the analytical essay was [ADJ], with conventions applied clearly and [WITH_QUAL].","In structuring your essay, you showed [ARTICLE_ADJ] [ADJ] command of the genre, applying its conventions [WITH_QUAL].","You handled the conventions of the analytical essay form [ADVERB], using genre features to develop and communicate your ideas [WITH_QUAL]."],
-    C:["Your use of the generic features of the analytical essay was [ADJ], with conventions present and applied with growing consistency.","In structuring your essay, you showed [ADJ] familiarity with the genre's conventions, though application was not yet consistent throughout.","You engaged with the conventions of the analytical essay form at a [ADJ] level, with genre features mostly present though not always applied with control."],
-    D:["Your use of the generic features of the analytical essay was [ADJ], with conventions applied inconsistently across the essay.","In structuring your essay, you showed [ADJ] awareness of the genre's conventions, though these were not yet reliably applied throughout.","You employed the conventions of the analytical essay form only partially, with genre features not yet consistently applied."],
-    E:["Your use of the generic features of the analytical essay was [ADJ], with conventions not yet reliably present in the writing.","In structuring your essay, you showed a [ADJ] awareness of the genre's conventions, though these were not yet evident throughout.","You have not yet applied the conventions of the analytical essay form with purpose, with genre features used [ADVERB]."]
+    A:["You used the conventions of the analytical essay form [WITH_QUAL]."],
+    B:["You used the conventions of the analytical essay form [WITH_QUAL]."],
+    C:["You used the conventions of the analytical essay form [WITH_QUAL]."],
+    D:["You used the conventions of the analytical essay form [WITH_QUAL]."],
+    E:["You used the conventions of the analytical essay form [WITH_QUAL]."]
   },
   od2:{
-    A:["Your selection and substantiation of subject matter was [ADJ], with evidence chosen and developed with clear intent to support your ideas throughout.","In developing your ideas, you demonstrated [ARTICLE_ADJ] [ADJ] approach to subject matter, integrating evidence purposefully and substantiating ideas [ADVERB].","You handled the subject matter of your essay [ADVERB], selecting and substantiating evidence [WITH_QUAL]."],
-    B:["Your selection and substantiation of subject matter was [ADJ], with evidence chosen and developed to support your ideas clearly and with growing confidence.","In developing your ideas, you showed [ARTICLE_ADJ] [ADJ] approach to subject matter, with evidence used with care and growing analytical detail.","You handled the subject matter of your essay [ADVERB], selecting and developing evidence [ADVERB] to support your analysis."],
-    C:["Your selection and substantiation of subject matter was [ADJ], with evidence present and used to support ideas, though depth was not always consistent.","In developing your ideas, you showed a [ADJ] approach to subject matter, though substantiation was not always fully developed throughout.","You addressed the subject matter of your essay at a [ADJ] level, with evidence included and growing in analytical focus."],
-    D:["Your selection and substantiation of subject matter was [ADJ], with evidence present but not yet consistently developed to support your ideas analytically.","In developing your ideas, you showed [ARTICLE_ADJ] [ADJ] awareness of how to select and develop subject matter, though analytical depth was inconsistent.","You only partially developed the subject matter of your essay, with evidence included but not yet [ADVERB] substantiated."],
-    E:["Your selection and substantiation of subject matter was [ADJ], with evidence not yet purposefully chosen or developed to support your ideas.","In developing your ideas, you showed a [ADJ] awareness of how subject matter can be selected and used to support analysis.","You have not yet developed the subject matter of your essay [ADVERB], with ideas not yet substantiated through evidence."]
+    A:["Your selection and substantiation of subject matter was purposeful, with highly relevant evidence chosen to support your ideas."],
+    B:["Your selection and substantiation of subject matter was purposeful, with relevant evidence chosen to support your ideas."],
+    C:["Your selection and substantiation of subject matter was purposeful, with mostly relevant evidence chosen to support your ideas."],
+    D:["Your selection and substantiation of subject matter was purposeful, with variably relevant evidence chosen to support your ideas."],
+    E:["Your selection and substantiation of subject matter requires development, with evidence not yet consistently chosen to support your ideas."]
   },
   od3:{
     A:["Your use of text structures was [ADJ], with your essay organised and developed with clear intent throughout.","In organising your essay, you demonstrated [ARTICLE_ADJ] [ADJ] use of text structures, developing your ideas [ADVERB] throughout.","The structure of your essay reflected [ARTICLE_ADJ] [ADJ] approach, with ideas organised and linked in a way that guided the reader [WITH_QUAL]."],
@@ -1691,29 +1743,35 @@ function buildEssayPreview(){
     if(inc('ka2')&&inc('ka3')){
       const discussAdj=pickAdj(grade('ka2'),3);
       const discussPair=kaAdjPools[grade('ka2')]?.adjs[3]||[discussAdj,discussAdj];
-      const g3=grade('ka3');
-      const adverb=(g3==='A'||g3==='B')?pickAdverb(g3):'';
-      const ka23Raw=kaPh('ka23',grade('ka2'));
+      const g2=grade('ka2');
+      const adverb=pickAdverb(g2);
+      const ka23Raw=kaPh('ka23',g2);
       if(ka23Raw){
-        const plainTokens={NAME:name,TOPIC:topic,FILM:film,CTX_STR:ctxStr,FEAT_STR:featStr,DISCUSS_ADJ:discussAdj,ARTICLE_ADJ:getArticle(discussAdj),ADVERB:adverb,WAS_OR_REQUIRED:(g3==='A'||g3==='B')?'was':'required',SUPPORT_OR_DEV:(g3==='A'||g3==='B')?'supported':'further development'};
-        const htmlTokens={NAME:escHtml(name),TOPIC:escHtml(topic),FILM:escHtml(film),CTX_STR:escHtml(ctxStr),FEAT_STR:escHtml(featStr),WAS_OR_REQUIRED:escHtml(plainTokens.WAS_OR_REQUIRED),SUPPORT_OR_DEV:escHtml(plainTokens.SUPPORT_OR_DEV)};
-        const adverbGradePool=eAdverbs[g3]||eAdverbs['C']||[];
+        const plainTokens={NAME:name,TOPIC:topic,FILM:film,CTX_STR:ctxStr,FEAT_STR:featStr,DISCUSS_ADJ:discussAdj,ARTICLE_ADJ:getArticle(discussAdj),ADVERB:adverb};
+        const htmlTokens={NAME:escHtml(name),TOPIC:escHtml(topic),FILM:escHtml(film),CTX_STR:escHtml(ctxStr),FEAT_STR:escHtml(featStr)};
+        const adverbGradePool=eAdverbs[g2]||eAdverbs['C']||[];
         const adverbList=adverbGradePool.includes(adverb)?adverbGradePool:[adverb,...adverbGradePool].filter(Boolean);
         const adverbSelectHtml=`<select class="word-select">${adverbList.map(w=>`<option${w===adverb?' selected':''}>${escHtml(w)}</option>`).join('')}</select>`;
         const adverbSel={bare:adverbSelectHtml,withArticle:adverbSelectHtml};
         pushPart(
           subTokens(ka23Raw,plainTokens),
-          subTokensHTML(ka23Raw,htmlTokens,{DISCUSS_ADJ:kaAdjSelectHTML(discussPair,discussAdj,grade('ka2')),ADVERB:adverbSel})
+          subTokensHTML(ka23Raw,htmlTokens,{DISCUSS_ADJ:kaAdjSelectHTML(discussPair,discussAdj,g2),ADVERB:adverbSel})
         );
       }
     } else if(inc('ka2')){
       const discussAdj=pickAdj(grade('ka2'),3);
       const discussPair=kaAdjPools[grade('ka2')]?.adjs[3]||[discussAdj,discussAdj];
-      const ka2Raw=kaPh('ka2_only',grade('ka2'));
+      const g2=grade('ka2');
+      const adverb=pickAdverb(g2);
+      const ka2Raw=kaPh('ka2_only',g2);
       if(ka2Raw){
+        const adverbGradePool=eAdverbs[g2]||eAdverbs['C']||[];
+        const adverbList=adverbGradePool.includes(adverb)?adverbGradePool:[adverb,...adverbGradePool].filter(Boolean);
+        const adverbSelectHtml=`<select class="word-select">${adverbList.map(w=>`<option${w===adverb?' selected':''}>${escHtml(w)}</option>`).join('')}</select>`;
+        const adverbSel={bare:adverbSelectHtml,withArticle:adverbSelectHtml};
         pushPart(
-          subTokens(ka2Raw,{NAME:name,TOPIC:topic,FILM:film,CTX_STR:ctxStr,DISCUSS_ADJ:discussAdj,ARTICLE_ADJ:getArticle(discussAdj)}),
-          subTokensHTML(ka2Raw,{NAME:escHtml(name),TOPIC:escHtml(topic),FILM:escHtml(film),CTX_STR:escHtml(ctxStr)},{DISCUSS_ADJ:kaAdjSelectHTML(discussPair,discussAdj,grade('ka2'))})
+          subTokens(ka2Raw,{NAME:name,TOPIC:topic,FILM:film,CTX_STR:ctxStr,DISCUSS_ADJ:discussAdj,ARTICLE_ADJ:getArticle(discussAdj),ADVERB:adverb}),
+          subTokensHTML(ka2Raw,{NAME:escHtml(name),TOPIC:escHtml(topic),FILM:escHtml(film),CTX_STR:escHtml(ctxStr)},{DISCUSS_ADJ:kaAdjSelectHTML(discussPair,discussAdj,g2),ADVERB:adverbSel})
         );
       }
     } else {
@@ -1780,14 +1838,14 @@ function buildEssayPreview(){
     return s.replace(/\s{2,}/g,' ').replace(/\s+\./g,'.').trim();
   }
   const odLines=[];const odHtmlLines=[];
-  if(inc('od1')){const raw=ph('od1');if(raw){const ft=selTags('e-tags-od1-feat');const tag=ft.length>0?' (particularly in your use of '+joinAnd(ft)+')':'';odLines.push(subPhAdj(raw,grade('od1')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od1')).replace(/\.$/,'')+escHtml(tag)+'.');}}
-  if(inc('od2')){const raw=ph('od2');if(raw){const st=selTags('e-tags-od2-sub');const tag=st.length>0?' (particularly in your '+joinAnd(st)+')':'';odLines.push(subPhAdj(raw,grade('od2')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od2')).replace(/\.$/,'')+escHtml(tag)+'.');}}
-  if(inc('od3')){const raw=ph('od3');if(raw){const st=selTags('e-tags-od3-struct');const tag=st.length>0?' (particularly in your '+joinAnd(st)+')':'';odLines.push(subPhAdj(raw,grade('od3')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od3')).replace(/\.$/,'')+escHtml(tag)+'.');}}
+  if(inc('od1')){const raw=ph('od1');if(raw){const ft=selTags('e-tags-od1-feat');const tag=ft.length>0?', particularly in your use of '+joinAnd(ft):'';odLines.push(subPhAdj(raw,grade('od1')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od1')).replace(/\.$/,'')+escHtml(tag)+'.');}}
+  if(inc('od2')){const raw=ph('od2');if(raw){const st=selTags('e-tags-od2-sub');const tag=st.length>0?', particularly in your '+joinAnd(st):'';odLines.push(subPhAdj(raw,grade('od2')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od2')).replace(/\.$/,'')+escHtml(tag)+'.');}}
+  if(inc('od3')){const raw=ph('od3');if(raw){const st=selTags('e-tags-od3-struct');const tag=st.length>0?', particularly in your '+joinAnd(st):'';odLines.push(subPhAdj(raw,grade('od3')).replace(/\.$/,'')+tag+'.');odHtmlLines.push(subPhAdjHTML(raw,grade('od3')).replace(/\.$/,'')+escHtml(tag)+'.');}}
   odLines.forEach((s,i)=>pushPart(s,odHtmlLines[i]));
   const lfLines=[];const lfHtmlLines=[];
-  if(inc('lf1')){const raw=ph('lf1');if(raw){const gt=selTags('e-tags-lf1-gram');const tag=gt.length>0?' (particularly in your use of '+joinAnd(gt)+')':'';lfLines.push(subPhAdj(raw,grade('lf1')).replace(/\.$/,'')+tag+'.');lfHtmlLines.push(subPhAdjHTML(raw,grade('lf1')).replace(/\.$/,'')+escHtml(tag)+'.');}}
-  if(inc('lf2')){const raw=ph('lf2');if(raw){const vt=selTags('e-tags-lf2-vocab');const tag=vt.length>0?' (particularly your use of '+joinAnd(vt)+')':'';lfLines.push(subPhAdj(raw,grade('lf2')).replace(/\.$/,'')+tag+'.');lfHtmlLines.push(subPhAdjHTML(raw,grade('lf2')).replace(/\.$/,'')+escHtml(tag)+'.');}}
-  if(inc('lf3')){const raw=ph('lf3');if(raw){const pt=selTags('e-tags-lf3-punct');const tag=pt.length>0?' (particularly in your use of '+joinAnd(pt)+')':'';lfLines.push(subPhAdj(raw,grade('lf3')).replace(/\.$/,'')+tag+'.');lfHtmlLines.push(subPhAdjHTML(raw,grade('lf3')).replace(/\.$/,'')+escHtml(tag)+'.');}}
+  if(inc('lf1')){const raw=ph('lf1');if(raw){const gt=selTags('e-tags-lf1-gram');const tag=gt.length>0?', particularly in your use of '+joinAnd(gt):'';lfLines.push(subPhAdj(raw,grade('lf1')).replace(/\.$/,'')+tag+'.');lfHtmlLines.push(subPhAdjHTML(raw,grade('lf1')).replace(/\.$/,'')+escHtml(tag)+'.');}}
+  if(inc('lf2')){const raw=ph('lf2');if(raw){const vt=selTags('e-tags-lf2-vocab');const tag=vt.length>0?', particularly your use of '+joinAnd(vt):'';lfLines.push(subPhAdj(raw,grade('lf2')).replace(/\.$/,'')+tag+'.');lfHtmlLines.push(subPhAdjHTML(raw,grade('lf2')).replace(/\.$/,'')+escHtml(tag)+'.');}}
+  if(inc('lf3')){const raw=ph('lf3');if(raw){const pt=selTags('e-tags-lf3-punct');const tag=pt.length>0?', particularly in your use of '+joinAnd(pt):'';lfLines.push(subPhAdj(raw,grade('lf3')).replace(/\.$/,'')+tag+'.');lfHtmlLines.push(subPhAdjHTML(raw,grade('lf3')).replace(/\.$/,'')+escHtml(tag)+'.');}}
   lfLines.forEach((s,i)=>pushPart(s,lfHtmlLines[i]));
   // Overall grade per capability area (used to key token substitution in imp/ext sentences)
   const kaGrade=getGrade(Math.round((vv('ka1')+vv('ka2')+vv('ka3'))/3));
@@ -1801,7 +1859,7 @@ function buildEssayPreview(){
   const checkedExt=Array.from(document.querySelectorAll('input[name="e-ext"]:checked')).map(cb=>
     subPhAdj((eExt[cb.dataset.ekey]||'').replace(/\[FILM\]/g,film),kaGrade)
   );
-  const impText=buildImproveParagraph(checkedImp,{ka:'work to deepen your analytical skills by working to',od:'focus on the organisation and development of your essay by working to',lf:'attend to your language features by working to'});
+  const impText=buildImproveParagraph(checkedImp,{gf:'',ka:'work to deepen your analytical skills by working to',od:'focus on the organisation and development of your essay by working to',lf:'attend to your language features by working to'},'To improve for future analytical tasks,');
   const extText=checkedExt.length>0?'To extend your analytical writing further, consider how you might '+joinAnd(checkedExt)+'.':'';
   let para2='';if(impText&&extText)para2=impText+' '+extText;else if(impText)para2=impText;else if(extText)para2=extText;
   const ka=vv('ka1')+vv('ka2')+vv('ka3'),od=vv('od1')+vv('od2')+vv('od3'),lf=vv('lf1')+vv('lf2')+vv('lf3');
@@ -1836,14 +1894,24 @@ function updatePreview(){
   renderChecklist();
 }
 
-function buildImproveParagraph(items,areaIntros){
+function buildImproveParagraph(items,areaIntros,stem){
   if(!items||!items.length)return'';
+  stem=stem||'To improve for future tasks,';
   const runs=[];
-  items.forEach(item=>{const last=runs[runs.length-1];if(last&&last.group===item.group)last.items.push(item.text);else runs.push({area:item.area,group:item.group,items:[item.text]});});
+  items.forEach(item=>{
+    const last=runs[runs.length-1];
+    // gf items are never grouped — each becomes its own sentence
+    if(last&&last.group===item.group&&item.area!=='gf')last.items.push(item.text);
+    else runs.push({area:item.area,group:item.group,items:[item.text]});
+  });
   const sentences=[];let lastArea=null;
   runs.forEach((run,ri)=>{
     const groupText=run.items.join('; ');
-    if(run.area!==lastArea){sentences.push(ri===0?'To improve for future tasks, '+areaIntros[run.area]+' '+groupText:cap(areaIntros[run.area])+' '+groupText);lastArea=run.area;}
+    const aIntro=areaIntros[run.area]||'';
+    if(run.area!==lastArea){
+      sentences.push(ri===0?(stem+(aIntro?' '+aIntro+' ':' ')+groupText).replace(/\s{2,}/g,' '):(aIntro?cap(aIntro)+' '+groupText:cap(groupText)));
+      lastArea=run.area;
+    }
     else{sentences.push(cap(groupText));}
   });
   return sentences.join('. ')+'.';
@@ -2182,8 +2250,8 @@ function buildEssayTemplates(container){
     lf3:'LF — Spelling and punctuation'
   };
   Object.keys(eCriteriaLabels).forEach(key=>makePhraseSection(container,ePhrases,()=>ss(SK.e_phrases,ePhrases),key,eCriteriaLabels[key],'FILM'));
-  const eImpGroups={'ka-rep':['e-ka-rep-0','e-ka-rep-1','e-ka-rep-2'],'ka-ctx':['e-ka-ctx-0','e-ka-ctx-1','e-ka-ctx-2'],'ka-feat':['e-ka-feat-0','e-ka-feat-1','e-ka-feat-2'],'od-gen':['e-od-gen-0','e-od-gen-1','e-od-gen-2','e-od-gen-3'],'od-sub':['e-od-sub-0','e-od-sub-1','e-od-sub-2'],'od-struct':['e-od-struct-0','e-od-struct-1','e-od-struct-2'],'lf-gram':['e-lf-gram-0','e-lf-gram-1','e-lf-gram-2'],'lf-vocab':['e-lf-vocab-0','e-lf-vocab-1','e-lf-vocab-2'],'lf-punct':['e-lf-punct-0','e-lf-punct-1','e-lf-punct-2','e-lf-punct-3']};
-  const eImpGroupLabels={'ka-rep':'Analysis of representations','ka-ctx':'Analysis of context','ka-feat':'Aesthetic features and stylistic devices','od-gen':'Generic features of an analytical essay','od-sub':'Selection and substantiation of subject matter','od-struct':'Text structures','lf-gram':'Grammar and sentence structure','lf-vocab':'Vocabulary','lf-punct':'Spelling and punctuation'};
+  const eImpGroups={'gf-plan':['e-gf-plan-0','e-gf-plan-1','e-gf-plan-2','e-gf-plan-3','e-gf-plan-4','e-gf-plan-5','e-gf-plan-6'],'gf-analysis':['e-gf-analysis-0','e-gf-analysis-1','e-gf-analysis-2','e-gf-analysis-3','e-gf-analysis-4','e-gf-analysis-5','e-gf-analysis-6'],'gf-expr':['e-gf-expr-0','e-gf-expr-1','e-gf-expr-2','e-gf-expr-3','e-gf-expr-4'],'ka-rep':['e-ka-rep-0','e-ka-rep-1','e-ka-rep-2'],'ka-ctx':['e-ka-ctx-0','e-ka-ctx-1','e-ka-ctx-2'],'ka-feat':['e-ka-feat-0','e-ka-feat-1','e-ka-feat-2'],'od-gen':['e-od-gen-0','e-od-gen-1','e-od-gen-2','e-od-gen-3'],'od-sub':['e-od-sub-0','e-od-sub-1','e-od-sub-2'],'od-struct':['e-od-struct-0','e-od-struct-1','e-od-struct-2'],'lf-gram':['e-lf-gram-0','e-lf-gram-1','e-lf-gram-2'],'lf-vocab':['e-lf-vocab-0','e-lf-vocab-1','e-lf-vocab-2'],'lf-punct':['e-lf-punct-0','e-lf-punct-1','e-lf-punct-2','e-lf-punct-3']};
+  const eImpGroupLabels={'gf-plan':'General Feedback — Planning and preparation','gf-analysis':'General Feedback — Analysis and argument','gf-expr':'General Feedback — Expression and editing','ka-rep':'Analysis of representations','ka-ctx':'Analysis of context','ka-feat':'Aesthetic features and stylistic devices','od-gen':'Generic features of an analytical essay','od-sub':'Selection and substantiation of subject matter','od-struct':'Text structures','lf-gram':'Grammar and sentence structure','lf-vocab':'Vocabulary','lf-punct':'Spelling and punctuation'};
   makeImpSection(container,eImp,()=>ss(SK.e_imp,eImp),eImpGroups,eImpGroupLabels,'FILM');
   makeExtSection(container,eExt,()=>ss(SK.e_ext,eExt),Object.keys(E_DEFAULT_EXT),'FILM');
 }
